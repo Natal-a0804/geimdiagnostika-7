@@ -1,0 +1,1 @@
+# geimdiagnostika-7
