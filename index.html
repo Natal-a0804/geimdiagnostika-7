@@ -1,0 +1,768 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Диагностика перед школой для детей 7 лет: чтение (слова, рассказ, состав слова) и счёт (задачи в два действия, сравнение)</title>
+<meta name="description" content="Бесплатная диагностика готовности к школе для детей 7 лет за 10 минут: чтение — слова, рассказ с вопросами, лишнее слово, составление слова из букв; счёт — состав числа 10, сравнение, задача в два действия. Результат для родителей.">
+<meta name="keywords" content="подготовка к школе, диагностика готовности к школе, научить читать, счёт до 10, состав числа, занятия для детей 5-7 лет, слоги, буквы">
+<style>
+  :root{--beige1:#FBF4E4;--beige2:#F0E2C4;--green:#2E7D32;--green2:#388E3C;--ink:#33502F}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0;min-height:100%}
+  body{font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif;color:#1b1b1b;
+       background:linear-gradient(180deg,var(--beige1),var(--beige2));overflow-x:hidden}
+  body.bg2{background:linear-gradient(180deg,#FDF7EA,#F3E7CB)}
+  body.bg3{background:linear-gradient(180deg,#F7F4E7,#E9EFDA)}
+  body.bg4{background:linear-gradient(180deg,#F4F8EC,#E4EFD8)}
+  body.bg5{background:linear-gradient(180deg,#FFF8E7,#FCE9C6)}
+  .screen{display:none;min-height:100vh;padding:12px 14px 96px;flex-direction:column;align-items:center}
+  .screen.on{display:flex}
+  .wrap{margin:auto 0;display:flex;flex-direction:column;align-items:center;gap:10px;width:100%}
+  h1{font-size:clamp(23px,4.4vw,42px);color:var(--green2);text-align:center;margin:4px 0;text-shadow:1px 1px 0 #fff;line-height:1.15}
+  h2{font-size:clamp(18px,3.2vw,30px);color:var(--green);text-align:center;margin:2px 0;line-height:1.2}
+  .sub{font-size:clamp(14px,2.2vw,19px);color:#2b2b2b;font-weight:600;text-align:center;margin:0}
+  .big{font-size:clamp(20px,3.6vw,34px);color:var(--green);font-weight:800;text-align:center;line-height:1.25}
+  .logo{height:clamp(120px,20vw,210px)}
+  .hero{width:auto;height:auto;max-width:min(690px,90vw);max-height:46vh;object-fit:contain;
+        border-radius:20px;box-shadow:0 10px 26px rgba(90,80,40,.18);background:#fff}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-size:clamp(16px,2.5vw,22px);font-weight:700;
+       padding:14px 26px;min-height:56px;border-radius:999px;cursor:pointer;background:#fff;color:var(--green);
+       border:4px solid var(--green);box-shadow:0 5px 0 #A5D6A7;user-select:none;text-align:center;transition:transform .08s}
+  .btn:active{transform:translateY(3px);box-shadow:0 2px 0 #A5D6A7}
+  .btn.small{font-size:clamp(14px,2vw,18px);padding:11px 20px;min-height:48px;border-width:3px}
+  .btn.ghost{border-color:#B9C7A8;color:#5c6b4f;box-shadow:0 5px 0 #DCE3CE}
+  .row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+  .row.nowrap{flex-wrap:nowrap;gap:clamp(5px,1.2vw,12px)}
+  .prog{width:min(940px,100%);display:flex;align-items:center;gap:10px;font-weight:700;color:#6b7a5a;font-size:clamp(12px,1.9vw,15px)}
+  .bar{flex:1;height:10px;background:#E6DCC2;border-radius:99px;overflow:hidden}
+  .bar i{display:block;height:100%;width:0%;background:var(--green);border-radius:99px;transition:width .35s}
+  .card{background:#fff;border:3px solid #E4DCC6;border-radius:18px;padding:14px 20px;max-width:min(860px,94%);text-align:center}
+  .letters{display:flex;gap:clamp(8px,1.6vw,18px);flex-wrap:wrap;justify-content:center;
+           font-size:clamp(38px,8vw,86px);font-weight:900;line-height:1}
+  .letter-cell{background:#fff;border:5px solid #C9B98F;border-radius:16px;
+               width:clamp(72px,12vw,124px);height:clamp(72px,12vw,124px);
+               display:flex;align-items:center;justify-content:center;box-shadow:0 6px 0 #E4DCC6;
+               font-size:clamp(36px,7.4vw,80px);font-weight:900}
+  .vowel{color:#D32F2F}
+  .readtext{display:block;font-weight:900;color:#1b1b1b;line-height:1.85;letter-spacing:2.6px;word-spacing:7px}
+  .cons{color:#0D3C8F}
+  .syl{color:#1b1b1b;display:inline-flex;flex-wrap:wrap;justify-content:center;gap:clamp(10px,2vw,22px);
+        font-size:clamp(34px,7vw,74px);font-weight:900}
+  .syl.small{font-size:clamp(20px,3.6vw,42px);gap:clamp(8px,1.6vw,16px)}
+  .syl.small .syl-cell{padding:8px 16px;border-width:4px;border-radius:14px}
+  .example{margin-top:6px;font-size:clamp(17px,3vw,28px);font-weight:900;color:#1b1b1b}
+  .syl-cell{color:#1b1b1b;background:#fff;border:5px solid #C9B98F;border-radius:18px;padding:10px 22px;display:inline-flex;
+            box-shadow:0 6px 0 #E4DCC6}
+  .plates{display:flex;gap:clamp(18px,4vw,54px);align-items:center;justify-content:center;flex-wrap:wrap}
+  .plate{width:clamp(168px,30vw,310px);height:clamp(98px,17vw,168px);border-radius:50%;
+         border:8px solid #C9B98F;background:#FFFDF6;display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap;padding:10px}
+  .plate img{height:clamp(30px,5.2vw,50px)}
+  .plate .fruit{font-size:clamp(28px,4.8vw,46px);line-height:1}
+  .source{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+  .source img{height:clamp(30px,5vw,52px)}
+  .source img.drag{touch-action:none;-webkit-user-drag:none;cursor:grab}
+  .source img.faded{opacity:.25;filter:grayscale(1)}
+  .slotbox{display:flex;flex-wrap:nowrap;gap:clamp(4px,1vw,10px);justify-content:center;align-items:center;min-height:70px}
+  .slot{background:#fff;border:5px solid #C9B98F;border-radius:14px;padding:4px clamp(7px,1.8vw,17px);
+        font-size:clamp(22px,5vw,50px);font-weight:900;box-shadow:0 5px 0 #E4DCC6}
+  .tile{background:#fff;border:4px solid #E4DCC6;border-radius:16px;padding:6px clamp(8px,2vw,20px);
+        font-size:clamp(20px,4.4vw,44px);font-weight:900;cursor:pointer;user-select:none;color:var(--green)}
+  .tile.used{visibility:hidden}
+  .shake{animation:sh .4s}@keyframes sh{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+  .btn.yes{background:#2E7D32;border-color:#2E7D32;color:#fff}
+  .opt{min-width:clamp(72px,14vw,112px);justify-content:center;font-size:clamp(20px,4.4vw,34px);
+       padding:10px 18px;font-weight:900}
+  .opt.ok{background:#2E7D32;border-color:#2E7D32;color:#fff}
+  .pick{cursor:pointer;transition:.15s}
+  .pick:active{transform:translateY(2px)}
+  .pick.ok{background:#E8F5E9;border-color:#2E7D32;box-shadow:0 6px 0 #2E7D32}
+  .pick.no{animation:sh .4s}
+  .opt.no{animation:sh .4s}
+  .tile .vowel,.slot .vowel{color:#D32F2F}
+  .tile .cons,.slot .cons{color:#0D3C8F}
+  .btn.no{animation:sh .4s}
+  .source .fruit{font-size:clamp(30px,5.4vw,54px);line-height:1}
+  .house{position:relative;padding-top:clamp(46px,8vw,80px);display:flex;flex-direction:column;align-items:center}
+  .roof{position:absolute;top:0;left:50%;transform:translateX(-50%);width:0;height:0;
+        border-left:clamp(70px,13vw,130px) solid transparent;border-right:clamp(70px,13vw,130px) solid transparent;
+        border-bottom:clamp(46px,8vw,80px) solid #E57373}
+  .roof-num{position:absolute;top:clamp(12px,2.4vw,26px);left:50%;transform:translateX(-50%);
+            font-size:clamp(26px,5vw,48px);font-weight:900;color:#fff;z-index:2}
+  .walls{background:#FFFDF6;border:8px solid #C9B98F;border-radius:0 0 18px 18px;padding:clamp(10px,2vw,18px) clamp(14px,3vw,28px);
+         display:flex;gap:clamp(10px,2vw,20px)}
+  .flat{width:clamp(72px,13vw,124px);height:clamp(72px,13vw,124px);border-radius:14px;background:#EFF6E4;
+        border:5px dashed #A5D6A7;display:flex;align-items:center;justify-content:center;
+        font-size:clamp(30px,6vw,58px);font-weight:900;color:var(--green)}
+  .mom{position:fixed;left:0;right:0;bottom:0;background:#EFEAD9;border-top:3px solid #D9CDA9;
+       padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));
+       display:none;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;
+       z-index:9999;box-shadow:0 -6px 18px rgba(90,80,40,.14);
+       pointer-events:auto;-webkit-user-select:none;user-select:none}
+  .mom.on{display:flex}
+  .mom span.lbl{font-size:clamp(12px,1.9vw,16px);color:#6b7a5a;font-weight:700}
+  .mark{font-size:clamp(15px,2.4vw,20px);font-weight:800;border:3px solid #B9C7A8;background:#fff;color:#5c6b4f;
+        border-radius:999px;padding:8px 16px;cursor:pointer;min-height:52px;display:inline-flex;align-items:center;gap:6px;
+        touch-action:manipulation;-webkit-tap-highlight-color:rgba(46,125,50,.15);user-select:none}
+  .mark.sel{background:#2E7D32;color:#fff;border-color:#2E7D32}
+  .result{background:#fff;border:4px solid #A5D6A7;border-radius:20px;padding:16px 20px;max-width:min(880px,94%);width:100%}
+  .result h3{margin:6px 0;font-size:clamp(17px,2.8vw,24px);color:var(--green)}
+  .result p{margin:6px 0;font-size:clamp(14px,2.3vw,19px);line-height:1.35}
+  .dont{background:#FFF7E6;border-left:6px solid #F0A62E;border-radius:10px;padding:8px 12px;margin-top:8px;font-size:clamp(13px,2.2vw,18px)}
+  .lvl{font-size:clamp(26px,5vw,44px);font-weight:900;color:var(--green)}
+  .shake{animation:sh .4s}@keyframes sh{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+  .pop{animation:pp .45s}@keyframes pp{0%{transform:scale(.85)}60%{transform:scale(1.06)}100%{transform:scale(1)}}
+  .hidden{display:none !important}
+  @media (max-width:640px){
+    .screen{padding:8px 8px 150px}
+    .mom{padding:8px 8px;gap:7px}
+    .mark{font-size:clamp(14px,4.1vw,18px);padding:9px 12px;min-height:50px;flex:1 1 auto;justify-content:center}
+    h1{font-size:clamp(20px,6vw,29px)}h2{font-size:clamp(16px,4.6vw,22px)}
+    .logo{height:clamp(86px,23vw,132px)}
+    .hero{max-width:92vw;max-height:40vh}
+    .big{font-size:clamp(18px,5.2vw,26px)}
+    .sub{font-size:clamp(12px,3.6vw,16px)}
+    .letter-cell{width:clamp(54px,15vw,84px);height:clamp(54px,15vw,84px);
+                 font-size:clamp(28px,9vw,52px);border-width:4px;border-radius:13px}
+    .letters{gap:8px}
+    .syl{font-size:clamp(28px,8vw,52px);gap:8px}
+    .syl-cell{padding:8px 14px;border-width:4px;border-radius:14px}
+    .plates{gap:14px}
+    .plate{width:clamp(140px,40vw,190px);height:clamp(84px,24vw,124px);border-width:6px;padding:8px}
+    .plate img{height:clamp(26px,7.4vw,40px)}
+    .source{gap:5px}
+    .source img{height:clamp(28px,8vw,44px)}
+    .flat{width:clamp(56px,17vw,88px);height:clamp(56px,17vw,88px);font-size:clamp(26px,8vw,46px);border-width:4px}
+    .house{padding-top:clamp(38px,11vw,60px)}
+    .roof{border-left-width:clamp(58px,19vw,92px);border-right-width:clamp(58px,19vw,92px);
+          border-bottom-width:clamp(38px,11vw,58px)}
+    .roof-num{font-size:clamp(22px,6.4vw,38px);top:clamp(8px,2.6vw,16px)}
+    .walls{padding:8px 12px;gap:10px;border-width:6px}
+    .btn{font-size:clamp(15px,4.2vw,19px);padding:12px 18px;min-height:52px}
+    .btn.small{min-height:46px;padding:10px 14px;font-size:clamp(13px,3.8vw,17px)}
+    .mark{padding:6px 10px;font-size:13px;min-height:42px;border-width:2px}
+    .mom{padding:6px;gap:6px}
+    .mom span.lbl{font-size:12px}
+    .card{padding:10px 12px}
+    .result{padding:12px 14px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ЗАСТАВКА -->
+<section class="screen on" id="s0">
+  <div class="wrap">
+    <img class="logo" src="images/logo.png" alt="Яша">
+    <img class="hero pop" src="images/start_class.jpg" alt="Наташа у доски, Яша и Баловашка, ребята за партами">
+    <h1>Яша идёт в первый класс</h1>
+    <p class="sub">Диагностика чтения и счёта · 7 лет · 10 минут</p>
+    <div class="btn" id="btnStart">▶ Играть!</div>
+  </div>
+</section>
+
+<!-- ПРИВЕТСТВИЕ -->
+<section class="screen" id="s1">
+  <div class="wrap">
+    <img class="logo" src="images/logo.png" alt="Яша">
+    <img class="hero" src="images/semya.jpg" alt="Яша, Наташа и Баловашка">
+    <p class="big">Яша · Наташа · Баловашка</p>
+    <p class="sub">Сейчас поиграем и узнаем, что ты уже умеешь</p>
+    <div class="btn" id="btnGo1">Дальше ➡</div>
+  </div>
+</section>
+
+<!-- ЗАГАДКА -->
+<section class="screen" id="szag">
+  <div class="wrap">
+    <img class="logo" src="images/logo.png" alt="Яша">
+    <h2>Отгадай загадку</h2>
+    <video id="vidZag" src="video/zagadka.mp4" poster="images/poster_zagadka.jpg" playsinline preload="auto"
+           style="max-width:min(760px,92%);border-radius:18px;background:#fff;box-shadow:0 8px 22px rgba(90,80,40,.15);display:none"></video>
+    <div class="card" id="zagSign"><span class="readtext" style="font-size:clamp(48px,12vw,110px);text-align:center">?</span></div>
+    <p class="sub">Послушай и скажи отгадку вслух</p>
+    <div class="btn" id="btnZag">Дальше ➡</div>
+  </div>
+</section>
+
+<!-- ОТГАДКА -->
+<section class="screen" id="sotg">
+  <div class="wrap">
+    <h2>Отгадка</h2>
+    <video class="hero" id="vidKniga" src="video/yasha_kniga.mp4" poster="images/poster_kniga.jpg" loop muted playsinline preload="auto"></video>
+    <div class="card"><span class="readtext" style="font-size:clamp(30px,6.4vw,64px)">КН<span class="vowel">И</span>Г<span class="vowel">А</span></span></div>
+    <div class="btn" id="btnOtg">Дальше ➡</div>
+  </div>
+</section>
+
+<!-- СКОРОГОВОРКА -->
+<section class="screen" id="sskor">
+  <div class="wrap">
+    <h2>Скороговорка</h2>
+    <video id="vidSkor" src="video/skorogovorka.mp4" poster="images/poster_skorogovorka.jpg" playsinline preload="auto"
+           style="max-width:min(760px,92%);border-radius:18px;background:#fff;box-shadow:0 8px 22px rgba(90,80,40,.15)"></video>
+    <div class="card"><span class="readtext" style="font-size:clamp(18px,3.4vw,32px)"><span class="vowel">У</span>ч<span class="vowel">е</span>н<span class="vowel">и</span>к <span class="vowel">у</span>ч<span class="vowel">и</span>л <span class="vowel">у</span>р<span class="vowel">о</span>к<span class="vowel">и</span>,<br><span class="vowel">у</span> н<span class="vowel">е</span>г<span class="vowel">о</span> в ч<span class="vowel">е</span>рн<span class="vowel">и</span>л<span class="vowel">а</span>х щ<span class="vowel">ё</span>к<span class="vowel">и</span>.</span></div>
+    <div class="btn ghost small" id="btnSkorAgain">▶ Послушать ещё раз</div>
+    <p class="sub">Повтори три раза: сначала медленно, потом быстрее!</p>
+    <div class="btn" id="btnSkor">Повторил ➡</div>
+  </div>
+</section>
+
+<!-- ЧТЕНИЕ 1: первый звук -->
+<section class="screen" id="r1">
+  <div class="wrap">
+    <div class="prog"><span>Часть 1 · Чтение · Задание 1 из 4</span><span class="bar"><i id="p1"></i></span></div>
+    <h2>Прочитай слова</h2>
+    <div class="card"><div class="syl">
+      <div class="syl-cell"><span class="cons">К</span><span class="cons">Н</span><span class="vowel">И</span><span class="cons">Г</span><span class="vowel">А</span></div>
+      <div class="syl-cell"><span class="cons">Ш</span><span class="cons">К</span><span class="vowel">О</span><span class="cons">Л</span><span class="vowel">А</span></div>
+      <div class="syl-cell"><span class="cons">Д</span><span class="cons">Р</span><span class="vowel">У</span><span class="cons">Г</span></div>
+    </div></div>
+    <p class="sub">Прочитай вслух эти слова</p>
+    <div class="btn" id="btnR1">Дальше ➡</div>
+  </div>
+</section>
+
+<!-- ЧТЕНИЕ 2: гласная -->
+<section class="screen" id="r2">
+  <div class="wrap">
+    <div class="prog"><span>Часть 1 · Чтение · Задание 2 из 4</span><span class="bar"><i id="p2"></i></span></div>
+    <h2>Прочитай и ответь</h2>
+    <div class="card"><span class="readtext" style="font-size:clamp(20px,3.8vw,36px);line-height:1.85"><span class="vowel">У</span> <span class="cons">М</span><span class="vowel">а</span><span class="cons">ш</span><span class="vowel">и</span> <span class="cons">б</span><span class="vowel">ы</span><span class="cons">л</span> <span class="cons">к</span><span class="vowel">о</span><span class="cons">т</span>.<br><span class="cons">К</span><span class="vowel">о</span><span class="cons">т</span> <span class="cons">с</span><span class="cons">п</span><span class="vowel">а</span><span class="cons">л</span> <span class="cons">н</span><span class="vowel">а</span> <span class="vowel">о</span><span class="cons">к</span><span class="cons">н</span><span class="vowel">е</span>.</span></div>
+    <p class="sub">Прочитай и ответь вслух: где спал кот?</p>
+    <div class="btn" id="btnR2">Дальше ➡</div>
+  </div>
+</section>
+
+<!-- ЧТЕНИЕ 3: буквы -->
+<section class="screen" id="r3">
+  <div class="wrap">
+    <div class="prog"><span>Часть 1 · Чтение · Задание 3 из 4</span><span class="bar"><i id="p3"></i></span></div>
+    <h2>Найди лишнее слово</h2>
+    <div class="card"><div class="syl small">
+      <div class="syl-cell pick" data-ok="0"><span class="cons">Л</span><span class="vowel">И</span><span class="cons">С</span><span class="vowel">А</span></div>
+      <div class="syl-cell pick" data-ok="1"><span class="cons">Д</span><span class="vowel">О</span><span class="cons">М</span></div>
+      <div class="syl-cell pick" data-ok="0"><span class="cons">З</span><span class="vowel">А</span><span class="vowel">Я</span><span class="cons">Ц</span></div>
+      <div class="syl-cell pick" data-ok="0"><span class="cons">В</span><span class="vowel">О</span><span class="cons">Л</span><span class="cons">К</span></div>
+    </div></div>
+    <p class="sub">Прочитай слова и скажи вслух: какое слово лишнее?</p>
+    <p class="sub" style="margin-top:4px">Баловашка тоже выбрал слово — и ошибся. Объясни ему, почему это слово лишнее</p>
+    <div class="btn" id="btnR3">Дальше ➡</div>
+  </div>
+</section>
+
+<!-- ЧТЕНИЕ 4: слог -->
+<section class="screen" id="r4">
+  <div class="wrap">
+    <div class="prog"><span>Часть 1 · Чтение · Задание 4 из 4</span><span class="bar"><i id="p4"></i></span></div>
+    <h2>Составь слово</h2>
+    <div class="slotbox" id="wordSlots"></div>
+    <div class="row nowrap" id="letterTiles"></div>
+    <p class="sub">Нажимай буквы по порядку — чтобы получилось слово</p>
+    <div class="btn" id="btnR4">Дальше ➡</div>
+  </div>
+</section>
+
+<!-- РАЗВИЛКА -->
+<section class="screen" id="sbr">
+  <div class="wrap">
+    <img class="hero" src="images/razvilka.jpg" alt="Поиграем с числами">
+    <p class="big">Поиграем ещё с числами — или отдохнём и продолжим завтра?</p>
+    <div class="row">
+      <div class="btn" id="btnPart2">Играем вторую часть! ➡</div>
+      <div class="btn ghost" id="btnLater">Завтра продолжим 🌙</div>
+    </div>
+  </div>
+</section>
+
+<!-- ЧАСТЬ 2: МАТЕМАТИКА 1 -->
+<section class="screen" id="m1">
+  <div class="wrap">
+    <div class="prog"><span>Часть 2 · Счёт · Задание 1 из 4</span><span class="bar"><i id="pm1"></i></span></div>
+    <h2>Разложи на две тарелки</h2>
+    <img src="images/babushka_pirog.jpg" alt="бабушка с пирогом" style="height:clamp(120px,20vw,210px);border-radius:18px;background:#fff;box-shadow:0 8px 22px rgba(90,80,40,.15)">
+    <div class="source" id="srcShells"></div>
+    <div class="plates">
+      <div class="plate" id="plateA"></div>
+      <div class="plate" id="plateB"></div>
+    </div>
+    <div class="sub" id="plateCount">Разложено: 0 из 9</div>
+    <p class="sub">Бабушка испекла девять пирожков. Разложи их на две тарелки. Как можно?</p>
+    <div class="row"><div class="btn ghost small hidden" id="btnAgain2">↺ Разложить по-другому</div></div>
+    <div class="sub hidden" id="variantsBox"></div>
+    <div class="btn" id="btnM1">Дальше ➡</div>
+  </div>
+</section>
+
+<!-- МАТЕМАТИКА 2: двумя руками -->
+<section class="screen" id="m2">
+  <div class="wrap">
+    <div class="prog"><span>Часть 2 · Счёт · Задание 2 из 4</span><span class="bar"><i id="pm2"></i></span></div>
+    <h2>Что спряталось в окошке?</h2>
+    <div class="house">
+      <div class="roof"></div>
+      <div class="roof-num">10</div>
+      <div class="walls"><div class="flat">6</div><div class="flat">?</div></div>
+    </div>
+    <p class="sub">Сколько нужно добавить к шести, чтобы стало десять?</p>
+    <div class="row">
+      <div class="btn opt" data-ok="0">3</div>
+      <div class="btn opt" data-ok="1">4</div>
+      <div class="btn opt" data-ok="0">5</div>
+    </div>
+    <div class="btn" id="btnM2">Дальше ➡</div>
+  </div>
+</section>
+
+<!-- МАТЕМАТИКА 3: домик -->
+<section class="screen" id="m3">
+  <div class="wrap">
+    <div class="prog"><span>Часть 2 · Счёт · Задание 3 из 4</span><span class="bar"><i id="pm3"></i></span></div>
+    <h2>Сравни</h2>
+    <div class="card"><span class="syl" style="font-size:clamp(24px,4.8vw,46px)">7 + 2 <span style="color:#B9C7A8">?</span> 5 + 5</span></div>
+    <div class="row">
+      <div class="btn" data-ans="more">&gt;</div>
+      <div class="btn" data-ans="less">&lt;</div>
+      <div class="btn" data-ans="eq">=</div>
+    </div>
+    <p class="sub">Посчитай и нажми нужный знак</p>
+    <div class="btn" id="btnM3">Дальше ➡</div>
+  </div>
+</section>
+
+<!-- МАТЕМАТИКА 4: в уме -->
+<section class="screen" id="m4">
+  <div class="wrap">
+    <div class="prog"><span>Часть 2 · Счёт · Задание 4 из 4</span><span class="bar"><i id="pm4"></i></span></div>
+    <h2>Задачка в два действия</h2>
+    <div class="card"><span class="readtext" style="font-size:clamp(19px,3.8vw,36px);line-height:1.4">Было 4 яблока.<br>Принесли ещё 3.<br>2 съели. Сколько осталось?</span><div class="example">4 + 3 − 2 = ?</div></div>
+    <p class="sub">Посчитай по порядку — сколько осталось?</p>
+    <div class="row">
+      <div class="btn opt" data-ok="0">4</div>
+      <div class="btn opt" data-ok="1">5</div>
+      <div class="btn opt" data-ok="0">6</div>
+    </div>
+    <div class="btn" id="btnM4">Дальше ➡</div>
+  </div>
+</section>
+
+<!-- РЕЗУЛЬТАТ -->
+<section class="screen" id="fin">
+  <div class="wrap">
+    <h1>Готово! Вот что у нас получилось</h1>
+    <div class="result">
+      <h3>📖 Чтение</h3>
+      <div class="lvl" id="lvlRead">—</div>
+      <p id="txtRead"></p>
+      <h3>🔢 Счёт</h3>
+      <div class="lvl" id="lvlMath">—</div>
+      <p id="txtMath"></p>
+      <div class="dont" id="dont"></div>
+    </div>
+    <div class="row">
+      <div class="btn" id="btnSend">📨 Отправить Наташе</div>
+      <div class="btn ghost" id="btnAgain">🔁 Сыграть ещё</div>
+    </div>
+    <img class="hero pop" id="finalPic" src="images/final_read.jpg" alt="Наташа читает книжку, рядом Яша и Баловашка">
+    <p class="sub" id="sendHint"></p>
+  </div>
+</section>
+
+<!-- ПОСЛОВИЦА И ЗВЁЗДОЧКА -->
+<section class="screen" id="sstar">
+  <div class="wrap">
+    <img class="logo" src="images/logo.png" alt="Яша">
+    <img src="images/zvezda.jpg" alt="Яша вручает звёздочку" style="max-width:min(760px,92%);border-radius:18px;background:#fff;box-shadow:0 8px 22px rgba(90,80,40,.15)">
+    <h2>Яша дарит тебе звёздочку за старание!</h2>
+    <div class="btn" id="btnStar">Посмотреть результат ➡</div>
+  </div>
+</section>
+
+<!-- ПАНЕЛЬ ДЛЯ МАМЫ -->
+<div class="mom" id="momBar">
+  <span class="lbl">Мама, отметьте:</span>
+  <div class="mark" data-v="2">✅ сам</div>
+  <div class="mark" data-v="1">⏳ с подсказкой</div>
+  <div class="mark" data-v="0">❌ не смог</div>
+</div>
+
+<audio id="voice" preload="auto"></audio>
+
+<script>
+(function(){
+  "use strict";
+  var V = document.getElementById('voice');
+  var marks = {}, curTask = null;
+  var TASKS = ['r1','r2','r3','r4','m1','m2','m3','m4'];
+  var ORDER = {r1:'v02', r2:'v04', r3:'v06', r4:'v08', m1:'v12', m2:'v14', m3:'v16', m4:'v18'};
+  var AFTER  = {r1:'v07', r2:'v15', r3:'v13', r4:'v09', m1:'v19', m2:'v17', m3:'v07', m4:'v19'};
+
+  function show(id, bg){
+    var l = document.querySelectorAll('.screen');
+    for (var i=0;i<l.length;i++) l[i].classList.remove('on');
+    document.getElementById(id).classList.add('on');
+    document.body.className = bg ? ('bg'+bg) : '';
+    window.scrollTo(0,0);
+  }
+  function say(file, after){
+    if (!file){ if (after) setTimeout(after, 150); return; }
+    try{
+      V.pause(); V.currentTime = 0; V.onended = null;
+      V.src = 'sounds/' + file + '.mp3';
+      V.onended = function(){ if (after) after(); };
+      var p = V.play();
+      if (p && p.catch) p.catch(function(){ setTimeout(function(){ if (after) after(); }, 400); });
+    } catch(e){ if (after) after(); }
+  }
+  function stop(){ try{ V.pause(); V.currentTime = 0; V.onended = null; }catch(e){} }
+  function prog(el,p){ el.style.width = Math.max(5, Math.min(100, Math.round(p))) + '%'; }
+
+  /* панель мамы: показывается на каждом задании */
+  var momBar = document.getElementById('momBar');
+  function openTask(id){
+    curTask = id;
+    var marks_ = momBar.querySelectorAll('.mark');
+    for (var i=0;i<marks_.length;i++){
+      marks_[i].classList.toggle('sel', marks[id] === +marks_[i].dataset.v);
+    }
+    momBar.classList.add('on');
+  }
+  function closeTask(){ momBar.classList.remove('on'); }
+  var mk = momBar.querySelectorAll('.mark');
+  for (var i=0;i<mk.length;i++){
+    mk[i].addEventListener('click', function(){
+      if (!curTask) return;
+      marks[curTask] = +this.dataset.v;
+      for (var j=0;j<mk.length;j++) mk[j].classList.remove('sel');
+      this.classList.add('sel');
+      stop();
+      /* звучит ТОЛЬКО ваша фраза-переход (похвала из «мешочка» убрана — была двойная) */
+      var id = curTask;
+      setTimeout(function(){ if (AFTER[id]) say(AFTER[id]); }, 350);
+    });
+  }
+
+  /* ── ход игры ── */
+  document.getElementById('btnStart').addEventListener('click', function(){
+    show('s1',1); say('v01');
+  });
+  document.getElementById('btnGo1').addEventListener('click', function(){
+    stop(); show('szag', 8);
+    var v = document.getElementById('vidZag'), sign = document.getElementById('zagSign');
+    if (v && v.readyState >= 1){          /* видео загадки есть — играем его */
+      if (sign) sign.style.display = 'none';
+      v.style.display = 'block';
+      try { v.currentTime = 0; v.play(); } catch(e){}
+    }
+  });
+  document.getElementById('btnZag').addEventListener('click', function(){
+    stop(); show('sotg', 10); say('v23');
+    var vk = document.getElementById('vidKniga');
+    if (vk) { try { vk.currentTime = 0; vk.play(); } catch(e){} }
+  });
+  document.getElementById('btnOtg').addEventListener('click', function(){
+    stop(); show('sskor', 11);
+    var v = document.getElementById('vidSkor');
+    if (!v) { say('v28'); return; }
+    v.onended = function(){ setTimeout(function(){ say('v28'); }, 300); };
+    var pr = v.play();
+    if (pr && pr.catch) pr.catch(function(){ setTimeout(function(){ say('v28'); }, 400); });
+  });
+  document.getElementById('btnSkor').addEventListener('click', function(){ stop(); goTask('r1', 12); });
+
+  function goTask(id, pct){
+    stop(); show(id, 3); openTask(id);
+    if (id === 'm1' && typeof initPlates === 'function') initPlates();
+    if (ORDER[id]){
+      if (id === 'r2'){ say(ORDER[id], function(){ setTimeout(function(){ say('v21'); }, 500); }); }
+      else if (id === 'r3'){ say(ORDER[id], function(){ setTimeout(function(){ say('v25'); }, 500); }); }
+      else { say(ORDER[id]); }
+    }
+    var bar = {r1:'p1',r2:'p2',r3:'p3',r4:'p4',m1:'pm1',m2:'pm2',m3:'pm3',m4:'pm4'}[id];
+    if (bar) prog(document.getElementById(bar), pct);
+  }
+
+  document.getElementById('btnR1').addEventListener('click', function(){ closeTask(); goTask('r2', 30); });
+  document.getElementById('btnR2').addEventListener('click', function(){ closeTask(); goTask('r3', 45); });
+  document.getElementById('btnR3').addEventListener('click', function(){ closeTask(); goTask('r4', 60); });
+  document.getElementById('btnR4').addEventListener('click', function(){ closeTask(); show('sbr',3); say('v10'); });
+
+  document.getElementById('btnPart2').addEventListener('click', function(){
+    stop();
+    say('v11', function(){ setTimeout(function(){ goTask('m1', 20); }, 300); });
+  });
+  document.getElementById('btnLater').addEventListener('click', function(){
+    closeTask(); stop();
+    show('fin', 5);
+    document.getElementById('txtRead').textContent = 'Первую часть мы прошли — вторую (числа) поиграем завтра: откройте игру снова и выберите «Играем вторую часть!».';
+    document.getElementById('txtMath').textContent = 'Пока не проходили.';
+    document.getElementById('btnSend').classList.remove('hidden');
+  });
+
+  document.getElementById('btnM1').addEventListener('click', function(){ closeTask(); goTask('m2', 40); });
+  document.getElementById('btnM2').addEventListener('click', function(){ closeTask(); goTask('m3', 60); });
+  document.getElementById('btnM3').addEventListener('click', function(){ closeTask(); goTask('m4', 80); });
+  document.getElementById('btnM4').addEventListener('click', function(){
+    closeTask(); show('sstar', 95);
+    say('v27');                       /* только похвала со звёздочкой — без наложений */
+  });
+  document.getElementById('btnStar').addEventListener('click', function(){ stop(); finish(); });
+
+  /* пирожки: перетаскивание пальцем ИЛИ клик-клик (запасной вариант) */
+  function initPlates(){
+    var src = document.getElementById('srcShells');
+    var a = document.getElementById('plateA');
+    var b = document.getElementById('plateB');
+    var counter = document.getElementById('plateCount');
+    var placed = 0, picked = null, found = [];
+    var againBtn = document.getElementById('btnAgain2');
+    var varBox = document.getElementById('variantsBox');
+    src.innerHTML = ''; a.innerHTML = ''; b.innerHTML = '';
+    if (varBox){ varBox.textContent = ''; varBox.classList.add('hidden'); }
+    if (againBtn) againBtn.classList.add('hidden');
+
+    var TOTAL = 9;
+    function updateCounter(){ if (counter) counter.textContent = 'Разложено: ' + placed + ' из ' + TOTAL; }
+
+    function countIn(pl){ return pl.querySelectorAll('img').length; }
+
+    function afterPut(){
+      if (placed === TOTAL){
+        var ca = countIn(a), cb = countIn(b);
+        var v = Math.min(ca, cb) + ' и ' + Math.max(ca, cb);
+        if (found.indexOf(v) === -1) found.push(v);
+        if (varBox){
+          varBox.textContent = '🧮 ' + (found.length > 1 ? 'Ты нашёл варианты: ' : 'Ты разложил: ') +
+                               found.join('  ·  ') + (found.length > 1 ? ' — как здорово!' : '');
+          varBox.classList.remove('hidden');
+        }
+        if (againBtn) againBtn.classList.remove('hidden');
+      }
+    }
+
+    function put(plate, el){
+      el.dataset.done = '1';
+      el.style.outline = '';
+      el.style.opacity = '';
+      plate.appendChild(el);
+      placed++; picked = null;
+      updateCounter();
+      afterPut();
+    }
+
+    if (againBtn){
+      againBtn.onclick = function(){
+        var all = a.querySelectorAll('img'), all2 = b.querySelectorAll('img'), k;
+        for (k=0;k<all.length;k++){ all[k].dataset.done=''; src.appendChild(all[k]); }
+        for (k=0;k<all2.length;k++){ all2[k].dataset.done=''; src.appendChild(all2[k]); }
+        placed = 0; picked = null; updateCounter();
+        againBtn.classList.add('hidden');
+      };
+    }
+
+    for (var i=0;i<TOTAL;i++){
+      (function(){
+        var im = document.createElement('img');
+        im.src = 'images/pirog.jpg'; im.alt = 'пирожок';
+        im.className = 'drag';
+        im.addEventListener('pointerdown', function(e){
+          if (im.dataset.done === '1') return;
+          e.preventDefault();
+          var rect = im.getBoundingClientRect();
+          var ghost = im.cloneNode();
+          ghost.style.cssText = 'position:fixed;left:' + rect.left + 'px;top:' + rect.top + 'px;width:' + rect.width +
+                                'px;height:' + rect.height + 'px;pointer-events:none;z-index:9999;opacity:.95;';
+          document.body.appendChild(ghost);
+          im.style.opacity = '.25';
+          var sx = e.clientX, sy = e.clientY, moved = false;
+
+          function onMove(ev){
+            var dx = ev.clientX - sx, dy = ev.clientY - sy;
+            if (Math.abs(dx) > 8 || Math.abs(dy) > 8) moved = true;
+            ghost.style.transform = 'translate(' + dx + 'px,' + dy + 'px)';
+          }
+          function onUp(ev){
+            document.removeEventListener('pointermove', onMove);
+            document.removeEventListener('pointerup', onUp);
+            var el = document.elementFromPoint(ev.clientX, ev.clientY);
+            var plate = el && el.closest ? el.closest('.plate') : null;
+            if (ghost.parentNode) ghost.parentNode.removeChild(ghost);
+            im.style.opacity = '';
+            if (plate){ put(plate, im); }
+            else if (!moved){   /* это был обычный клик — выбираем пирожок */
+              var all = src.querySelectorAll('img');
+              for (var k=0;k<all.length;k++) all[k].style.outline = '';
+              im.style.outline = '6px solid #2E7D32';
+              picked = im;
+            }
+          }
+          document.addEventListener('pointermove', onMove);
+          document.addEventListener('pointerup', onUp);
+        });
+        src.appendChild(im);
+      })();
+    }
+    function plateClick(plate){
+      return function(){ if (picked) put(plate, picked); };
+    }
+    a.onclick = plateClick(a);
+    b.onclick = plateClick(b);
+    updateCounter();
+  }
+  initPlates();
+
+  /* ── задание «Составь слово» (7 лет) ── */
+  (function(){
+    var slots = document.getElementById('wordSlots'), tiles = document.getElementById('letterTiles');
+    if (!slots || !tiles) return;
+    var WORD = ['Ш','К','О','Л','А'], step = 0;
+    var mix = WORD.slice();
+    for (var i=mix.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=mix[i]; mix[i]=mix[j]; mix[j]=t; }
+    mix.forEach(function(ch){
+      var el = document.createElement('div');
+      el.className = 'tile';
+      el.innerHTML = ('АЕЁИОУЫЭЮЯ'.indexOf(ch) >= 0)
+        ? '<span class="vowel">'+ch+'</span>'
+        : '<span class="cons">'+ch+'</span>';
+      el.addEventListener('click', function(){
+        if (el.dataset.used === '1') return;
+        if (ch === WORD[step]){
+          el.dataset.used = '1'; el.classList.add('used');
+          var s = document.createElement('div'); s.className = 'slot';
+          s.innerHTML = ('АЕЁИОУЫЭЮЯ'.indexOf(ch) >= 0)
+            ? '<span class="vowel">'+ch+'</span>'
+            : '<span class="cons">'+ch+'</span>';
+          slots.appendChild(s); step++;
+        } else {
+          el.classList.add('shake');
+          setTimeout(function(){ el.classList.remove('shake'); }, 420);
+        }
+      });
+      tiles.appendChild(el);
+    });
+  })();
+
+  /* ── видео: клик = пауза/играть, кнопка «ещё раз» ── */
+  (function(){
+    var vz = document.getElementById('vidZag');
+    if (vz) vz.addEventListener('click', function(){ vz.paused ? vz.play() : vz.pause(); });
+    var vs = document.getElementById('vidSkor');
+    if (vs) vs.addEventListener('click', function(){ vs.paused ? vs.play() : vs.pause(); });
+    var again = document.getElementById('btnSkorAgain');
+    if (again && vs) again.addEventListener('click', function(){ stop(); vs.currentTime = 0; vs.play(); });
+  })();
+
+  /* ── клик по слову в «Найди лишнее» ── */
+  (function(){
+    var picks = document.querySelectorAll('.pick');
+    Array.prototype.forEach.call(picks, function(b){
+      b.addEventListener('click', function(){
+        Array.prototype.forEach.call(picks, function(x){ x.classList.remove('ok','no'); });
+        if (b.dataset.ok === '1'){ b.classList.add('ok'); }
+        else { b.classList.add('no'); setTimeout(function(){ b.classList.remove('no'); }, 700); }
+      });
+    });
+  })();
+
+  /* ── варианты ответов (домик, задачка) ── */
+  (function(){
+    var opts = document.querySelectorAll('.opt');
+    Array.prototype.forEach.call(opts, function(b){
+      b.addEventListener('click', function(){
+        var sibs = b.parentNode.querySelectorAll('.opt');
+        Array.prototype.forEach.call(sibs, function(x){ x.classList.remove('ok','no'); });
+        if (b.dataset.ok === '1'){ b.classList.add('ok'); }
+        else { b.classList.add('no'); setTimeout(function(){ b.classList.remove('no'); }, 700); }
+      });
+    });
+  })();
+
+  /* ── задание «Сравни» (7 лет) ── */
+  (function(){
+    var m3 = document.getElementById('m3');
+    if (!m3) return;
+    var btns = m3.querySelectorAll('.btn[data-ans]');
+    Array.prototype.forEach.call(btns, function(b){
+      b.addEventListener('click', function(){
+        Array.prototype.forEach.call(btns, function(x){ x.classList.remove('yes','no'); });
+        if (b.dataset.ans === 'less'){ b.classList.add('yes'); }
+        else { b.classList.add('no'); setTimeout(function(){ b.classList.remove('no'); }, 700); }
+      });
+    });
+  })();
+
+  /* (для 7 лет блок «наглядно» не нужен — задачки читаются текстом) */
+
+  /* ── результат ── */
+  var READ_TXT = {
+    zvuki:{lvl:'⚪ Звуки', t:'Малыш пока не слышит, из каких звуков состоит слово — это самая первая ступенька. Если её пропустить, буквы он выучит, а читать не станет: слоги не складываются. Начинаем со звуков — «поймай звук», «первый звук», хлопки по слогам. Через 2–3 недели вы услышите: он сам назовёт первый звук.'},
+    bukvy:{lvl:'🟢 Буквы', t:'Часть букв он уже знает — самое время подружиться с остальными, чтобы каждая была как знакомый друг. Сейчас важнее узнать буквы, чем читать. Игры: «найди букву», лото букв, мемори «буква — картинка». Когда букв станет 10–15 — перейдём к слогам.'},
+    slogi:{lvl:'🟡 Слоги', t:'Он уже складывает слоги — это настоящее чтение! Сейчас важнее всего читать слог ЦЕЛИКОМ, а не по буквам: не «М-А-МА», а «МА». Игры: паровозик, окошко, лото слогов. Через 3–4 недели он будет читать короткие слова.'},
+    slova:{lvl:'🟠 Слова', t:'Читает короткие слова и понимает их — отличный результат! Дальше наращиваем: слова из 4 букв, потом короткие фразы. Игры: «слово — картинка», мемори «слово — картинка», чего не стало.'},
+    predl:{lvl:'🔵 Предложения', t:'Читает фразу и понимает смысл — это уже уровень «читаю сам». Дальше — короткие тексты и вопросы по ним: «кто? что сделал? где?»'}
+  };
+  var MATH_TXT = {
+    legkiy:{lvl:'🟢 Лёгкий', t:'Понимает, что два числа вместе дают одно — база есть. Играем с предметами: две корзинки, поезд с вагонами, «покажи число двумя руками». Пусть проговаривает вслух: «пять и два — это семь».'},
+    sredniy:{lvl:'🟡 Средний', t:'Считает с опорой на предметы и картинки — это нормальный этап. Закрепляем состав числа до 10: домики, ключики к замку, мемори «пары к 10», «чего не стало» с парами.'},
+    um:{lvl:'🔴 Считает в уме', t:'Считает без подсказок — отличный результат! Дальше: задачи на вычитание («из 10 убрали 4»), лабиринт числа, «поймай пару» на время.'}
+  };
+
+  function finish(){
+    stop(); closeTask(); show('fin', 5);
+    var r = ['r1','r2','r3','r4'].map(function(k){ return marks[k]; });
+    var m = ['m1','m2','m3','m4'].map(function(k){ return marks[k]; });
+    var rSum = r.reduce(function(a,b){ return a + (b||0); }, 0);
+    var mSum = m.reduce(function(a,b){ return a + (b||0); }, 0);
+
+    var rKey = 'zvuki';
+    if (r[3] >= 1) rKey = 'slogi';            /* задание 4 — составь слово */
+    if (r[0] >= 1 || r[2] >= 1) rKey = 'slova'; /* слова и «найди лишнее» */
+    if (r[1] >= 1) rKey = 'predl';            /* прочитал и ответил */
+    if (rSum <= 2) rKey = 'zvuki';
+
+    var mKey = 'legkiy';
+    if (m[1] >= 1 || m[3] >= 1) mKey = 'um';    /* домик до 10 и задача в два действия */
+    else if (m[0] >= 1 || m[2] >= 1) mKey = 'sredniy';
+
+    document.getElementById('lvlRead').textContent = READ_TXT[rKey].lvl;
+    document.getElementById('txtRead').textContent = READ_TXT[rKey].t;
+    document.getElementById('lvlMath').textContent = MATH_TXT[mKey].lvl;
+    document.getElementById('txtMath').textContent = MATH_TXT[mKey].t;
+
+    var dontMap = {
+      zvuki:'Сейчас не надо учить буквы и тем более давать тексты — сначала звуки.',
+      bukvy:'Пока не заставляйте писать буквы и не давайте тексты — идём через узнавание букв.',
+      slogi:'Не торопите с текстами: пока слог не читается целиком, слова будут «рассыпаться».',
+      slova:'Дальше — короткие фразы и вопросы по прочитанному: «кто? что сделал? где?»',
+      predl:'Дальше — короткие рассказы: читаем 2–3 предложения и отвечаем на вопросы, пересказываем.'
+    };
+    var isHigh = (rKey === 'slova' || rKey === 'predl');
+    document.getElementById('dont').textContent =
+      (isHigh ? '➡️ Дальше: ' : '❗ Чего сейчас не делать: ') + dontMap[rKey];
+
+    var lines = ['Чтение: ' + READ_TXT[rKey].lvl, 'Счёт: ' + MATH_TXT[mKey].lvl];
+    ['r1','r2','r3','r4'].forEach(function(k,i){ lines.push('Чтение ' + (i+1) + ': ' + (marks[k]===2?'✅ сам':marks[k]===1?'⏳ с подсказкой':marks[k]===0?'❌ не смог':'— не отмечено')); });
+    ['m1','m2','m3','m4'].forEach(function(k,i){ lines.push('Счёт ' + (i+1) + ': ' + (marks[k]===2?'✅ сам':marks[k]===1?'⏳ с подсказкой':marks[k]===0?'❌ не смог':'— не отмечено')); });
+    window.__resultText = 'Моя диагностика «Яша и волшебные ступеньки»:\n' + lines.join('\n');
+    say('v20', function(){ setTimeout(playFinal, 500); });
+  }
+
+  function playFinal(){
+    var img = document.getElementById('finalPic');
+    if (!img) return;
+    img.classList.remove('pop');
+    void img.offsetWidth;
+    img.classList.add('pop');
+  }
+
+  document.getElementById('btnSend').addEventListener('click', function(){
+    var t = window.__resultText || 'Диагностика пройдена';
+    navigator.clipboard && navigator.clipboard.writeText(t).catch(function(){});
+    try { prompt('Скопируйте этот текст и отправьте Наташе (в ВК или Telegram):', t); } catch(e){}
+    document.getElementById('sendHint').textContent = 'Текст скопирован. Спасибо! Наташа посмотрит и скажет, с чего начать.';
+  });
+  document.getElementById('btnAgain').addEventListener('click', function(){ stop(); location.reload(); });
+})();
+</script>
+</body>
+</html>
