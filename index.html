@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>Диагностика перед школой для детей 7 лет: чтение (слова, рассказ, состав слова) и счёт (задачи в два действия, сравнение)</title>
-<meta name="description" content="Бесплатная диагностика готовности к школе для детей 7 лет за 10 минут: чтение — слова, рассказ с вопросами, лишнее слово, составление слова из букв; счёт — состав числа 10, сравнение, задача в два действия. Результат для родителей.">
-<meta name="keywords" content="подготовка к школе, диагностика готовности к школе, научить читать, счёт до 10, состав числа, занятия для детей 5-7 лет, слоги, буквы">
+<title>Полная диагностика готовности к школе для детей 6-7 лет: научить читать и считать — чтение, слоги, слова, счёт до 10, задачи</title>
+<meta name="description" content="Полная диагностика подготовки к школе для детей 6-7 лет: 13 заданий на чтение и счёт за 20 минут — звуки, слоги, слова, понимание прочитанного, состав числа, задачи и закономерности. Уровень ребёнка, маршрут занятий и дневник прогресса для родителей.">
+<meta name="keywords" content="диагностика готовности к школе, чтение, счёт, подготовка к школе, состав числа, слоги, понимание прочитанного, занятия для детей 6-7 лет">
 <style>
   :root{--beige1:#FBF4E4;--beige2:#F0E2C4;--green:#2E7D32;--green2:#388E3C;--ink:#33502F}
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -98,13 +98,17 @@
        padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));
        display:none;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;
        z-index:9999;box-shadow:0 -6px 18px rgba(90,80,40,.14);
-       pointer-events:auto;-webkit-user-select:none;user-select:none}
+       pointer-events:auto;-webkit-user-select:none;user-select:none;
+       transform:translateZ(0);will-change:transform;contain:layout paint;
+       touch-action:manipulation}
   .mom.on{display:flex}
   .mom span.lbl{font-size:clamp(12px,1.9vw,16px);color:#6b7a5a;font-weight:700}
   .mark{font-size:clamp(15px,2.4vw,20px);font-weight:800;border:3px solid #B9C7A8;background:#fff;color:#5c6b4f;
         border-radius:999px;padding:8px 16px;cursor:pointer;min-height:52px;display:inline-flex;align-items:center;gap:6px;
         touch-action:manipulation;-webkit-tap-highlight-color:rgba(46,125,50,.15);user-select:none}
   .mark.sel{background:#2E7D32;color:#fff;border-color:#2E7D32}
+  .mark:active{transform:scale(.95)}
+  .mark.tap{background:#C8E6C9}
   .result{background:#fff;border:4px solid #A5D6A7;border-radius:20px;padding:16px 20px;max-width:min(880px,94%);width:100%}
   .result h3{margin:6px 0;font-size:clamp(17px,2.8vw,24px);color:var(--green)}
   .result p{margin:6px 0;font-size:clamp(14px,2.3vw,19px);line-height:1.35}
@@ -116,7 +120,8 @@
   @media (max-width:640px){
     .screen{padding:8px 8px 150px}
     .mom{padding:8px 8px;gap:7px}
-    .mark{font-size:clamp(14px,4.1vw,18px);padding:9px 12px;min-height:50px;flex:1 1 auto;justify-content:center}
+    .mark{font-size:clamp(15px,4.4vw,19px);padding:11px 12px;min-height:56px;flex:1 1 auto;justify-content:center;
+          transition:transform .06s ease,background .12s ease}
     h1{font-size:clamp(20px,6vw,29px)}h2{font-size:clamp(16px,4.6vw,22px)}
     .logo{height:clamp(86px,23vw,132px)}
     .hero{max-width:92vw;max-height:40vh}
@@ -147,622 +152,1051 @@
     .result{padding:12px 14px}
   }
 </style>
+<style>
+  .zagask{font-size:clamp(18px,3.2vw,28px);font-weight:700;color:#1b1b1b;line-height:1.6;text-align:center;max-width:min(880px,94%)}
+  .zagask i{font-style:normal;color:#2E7D32;font-weight:800}
+  .badge-star{font-size:clamp(30px,7vw,64px);line-height:1}
+  .passport{background:#fff;border:4px solid #A5D6A7;border-radius:20px;padding:14px 18px;max-width:min(880px,94%);text-align:left}
+  .passport h4{margin:10px 0 4px;color:#2E7D32;font-size:clamp(15px,2.5vw,20px)}
+  .passport p,.passport li{font-size:clamp(13px,2.2vw,18px);line-height:1.4;margin:4px 0}
+  .starrow{display:flex;gap:10px;justify-content:center;font-size:clamp(30px,7vw,62px)}
+  .starrow span{opacity:.25;transition:.4s}
+  .starrow span.on{opacity:1;transform:scale(1.15)}
+  .poslovitsa{display:block;font-family:Georgia,'Times New Roman',serif;font-style:italic;font-weight:700;
+              font-size:clamp(21px,4vw,40px);line-height:1.5;color:#1b1b1b;text-align:center;
+              letter-spacing:.4px;padding:6px 4px}
+</style>
 </head>
 <body>
 
-<!-- ЗАСТАВКА -->
+<!-- 1. ЗАСТАВКА (видео) -->
 <section class="screen on" id="s0">
   <div class="wrap">
-    <img class="logo" src="images/logo.png" alt="Яша">
-    <img class="hero pop" src="images/start_class.jpg" alt="Наташа у доски, Яша и Баловашка, ребята за партами">
-    <h1>Яша идёт в первый класс</h1>
-    <p class="sub">Диагностика чтения и счёта · 7 лет · 10 минут</p>
-    <div class="btn" id="btnStart">▶ Играть!</div>
+    <video class="hero pop" id="vidStart" src="video/zastavka.mp4" poster="images/poster_zastavka.jpg"
+           playsinline preload="auto"></video>
+    <h1>Яша и волшебные ступеньки</h1>
+    <p class="sub">Полная диагностика · чтение и счёт · 20 минут</p>
+    <p class="sub">Нажми «Посмотреть» — Яша и его друзья скажут тебе привет</p>
+    <div class="row">
+      <div class="btn" id="btnReplayStart">▶ Посмотреть</div>
+      <div class="btn ghost" id="btnStart">Дальше ➡</div>
+    </div>
   </div>
 </section>
 
-<!-- ПРИВЕТСТВИЕ -->
-<section class="screen" id="s1">
+<!-- 2. ЗАГАДКА 1: МЕЛ -->
+<section class="screen" id="sZag1">
   <div class="wrap">
-    <img class="logo" src="images/logo.png" alt="Яша">
-    <img class="hero" src="images/semya.jpg" alt="Яша, Наташа и Баловашка">
-    <p class="big">Яша · Наташа · Баловашка</p>
-    <p class="sub">Сейчас поиграем и узнаем, что ты уже умеешь</p>
-    <div class="btn" id="btnGo1">Дальше ➡</div>
-  </div>
-</section>
-
-<!-- ЗАГАДКА -->
-<section class="screen" id="szag">
-  <div class="wrap">
-    <img class="logo" src="images/logo.png" alt="Яша">
     <h2>Отгадай загадку</h2>
-    <video id="vidZag" src="video/zagadka.mp4" poster="images/poster_zagadka.jpg" playsinline preload="auto"
-           style="max-width:min(760px,92%);border-radius:18px;background:#fff;box-shadow:0 8px 22px rgba(90,80,40,.15);display:none"></video>
-    <div class="card" id="zagSign"><span class="readtext" style="font-size:clamp(48px,12vw,110px);text-align:center">?</span></div>
+    <div class="card">
+      <p class="zagask">Белый камешек в руке,<br>Он рисует на доске.<br>Если тряпкой проведёшь —<br>След его ты не найдёшь.</p>
+    </div>
     <p class="sub">Послушай и скажи отгадку вслух</p>
-    <div class="btn" id="btnZag">Дальше ➡</div>
+    <div class="row">
+      <div class="btn" id="btnZ1">Дальше ➡</div>
+      <div class="btn ghost small" id="btnZ1again">▶ Послушать ещё раз</div>
+    </div>
   </div>
 </section>
 
-<!-- ОТГАДКА -->
-<section class="screen" id="sotg">
+<!-- 3. ОТГАДКА 1: МЕЛ -->
+<section class="screen" id="sOtg1">
   <div class="wrap">
     <h2>Отгадка</h2>
-    <video class="hero" id="vidKniga" src="video/yasha_kniga.mp4" poster="images/poster_kniga.jpg" loop muted playsinline preload="auto"></video>
-    <div class="card"><span class="readtext" style="font-size:clamp(30px,6.4vw,64px)">КН<span class="vowel">И</span>Г<span class="vowel">А</span></span></div>
-    <div class="btn" id="btnOtg">Дальше ➡</div>
+    <img class="hero pop" src="images/otgadka_mel.jpg" alt="Мел на школьной доске">
+    <div class="card"><span class="readtext" style="font-size:clamp(34px,7vw,72px);letter-spacing:6px">
+      <span class="cons">М</span><span class="vowel">Е</span><span class="cons">Л</span></span></div>
+    <p class="sub">Прочитай слово вслух</p>
+    <p class="sub" style="margin-top:2px">Баловашка не угадал. Объясни ему, почему это мел</p>
+    <div class="btn" id="btnO1">Дальше ➡</div>
   </div>
 </section>
 
-<!-- СКОРОГОВОРКА -->
-<section class="screen" id="sskor">
+<!-- 4. ЗАГАДКА 2: ПЕНАЛ -->
+<section class="screen" id="sZag2">
+  <div class="wrap">
+    <h2>Ещё одна загадка</h2>
+    <div class="card">
+      <p class="zagask">Домик маленький для ручек,<br>Карандашей и всяких штучек.<br>Застегнётся на замок —<br>Его берём мы на урок.</p>
+    </div>
+    <p class="sub">Послушай и скажи отгадку вслух</p>
+    <div class="row">
+      <div class="btn" id="btnZ2">Дальше ➡</div>
+      <div class="btn ghost small" id="btnZ2again">▶ Послушать ещё раз</div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. ОТГАДКА 2: ПЕНАЛ -->
+<section class="screen" id="sOtg2">
+  <div class="wrap">
+    <h2>Отгадка</h2>
+    <img class="hero pop" src="images/otgadka_penal.jpg" alt="Пенал с карандашами">
+    <div class="card"><span class="readtext" style="font-size:clamp(34px,7vw,72px);letter-spacing:6px">
+      <span class="cons">П</span><span class="vowel">Е</span><span class="cons">Н</span><span class="vowel">А</span><span class="cons">Л</span></span></div>
+    <p class="sub">Прочитай слово вслух</p>
+    <p class="sub" style="margin-top:2px">И это слово объясни Баловашке</p>
+    <div class="btn" id="btnO2">Дальше ➡</div>
+  </div>
+</section>
+
+<!-- ДАЛЬШЕ: ЧТЕНИЕ (7 заданий) -->
+
+<!-- ================= ЧТЕНИЕ: 7 ЗАДАНИЙ ================= -->
+
+<!-- R1: разложи буквы (гласные — Яше, согласные — Баловашке) -->
+<section class="screen" id="sR1">
+  <div class="wrap">
+    <div class="prog"><span>Задание 1 из 13</span><div class="bar"><i id="pR1"></i></div></div>
+    <h2>Гласные и согласные</h2>
+    <p class="sub">Нажми букву, а потом нажми на того, кому её отдать: гласные — Яше, согласные — Баловашке</p>
+    <div class="row" id="ltTiles" style="gap:clamp(5px,1.4vw,12px)"></div>
+    <div class="row" style="gap:18px;margin-top:4px">
+      <div class="card pick" id="hVowel" data-kind="v" style="cursor:pointer;padding:8px 12px">
+        <img src="images/yasha.jpg" alt="Яша" style="height:clamp(78px,17vw,140px);border-radius:12px">
+        <div style="font-weight:900;color:#C62828;font-size:clamp(15px,2.6vw,22px)">Яша · гласные</div>
+        <div class="row" id="boxV" style="min-height:48px;gap:6px"></div>
+      </div>
+      <div class="card pick" id="hCons" data-kind="c" style="cursor:pointer;padding:8px 12px">
+        <img src="images/balovashka.jpg" alt="Баловашка" style="height:clamp(78px,17vw,140px);border-radius:12px">
+        <div style="font-weight:900;color:#0D3C8F;font-size:clamp(15px,2.6vw,22px)">Баловашка · согласные</div>
+        <div class="row" id="boxC" style="min-height:48px;gap:6px"></div>
+      </div>
+    </div>
+    <p class="sub" id="r1stat">Разложено: 0 из 10</p>
+    <div class="btn hidden" id="btnR1">Дальше ➡</div>
+  </div>
+</section>
+
+<!-- R2: слово + картинка -->
+<section class="screen" id="sR2">
+  <div class="wrap">
+    <div class="prog"><span>Задание 2 из 13</span><div class="bar"><i id="pR2"></i></div></div>
+    <h2>Прочитай слово и найди картинку</h2>
+    <div class="card"><span class="readtext" id="r2word" style="font-size:clamp(34px,6.6vw,68px)"></span></div>
+    <div class="row" id="r2pics" style="gap:12px"></div>
+    <p class="sub" id="r2stat">Слово 1 из 3</p>
+    <div class="btn hidden" id="btnR2">Дальше ➡</div>
+  </div>
+</section>
+
+<!-- R3: собери слово из слогов -->
+<section class="screen" id="sR3">
+  <div class="wrap">
+    <div class="prog"><span>Задание 3 из 13</span><div class="bar"><i id="pR3"></i></div></div>
+    <h2>Собери слово из слогов</h2>
+    <img class="hero" id="r3pic" src="images/mama.jpg" alt="подсказка" style="max-height:26vh">
+    <div class="slotbox" id="r3slots"></div>
+    <div class="row" id="r3tiles"></div>
+    <p class="sub" id="r3stat">Слово 1 из 2</p>
+    <div class="btn hidden" id="btnR3">Дальше ➡</div>
+  </div>
+</section>
+
+<!-- R4: закончи предложение -->
+<section class="screen" id="sR4">
+  <div class="wrap">
+    <div class="prog"><span>Задание 4 из 13</span><div class="bar"><i id="pR4"></i></div></div>
+    <h2>Закончи предложение</h2>
+    <div class="card"><span class="readtext" id="r4text" style="font-size:clamp(19px,3.4vw,34px)"></span></div>
+    <div class="row" id="r4opts"></div>
+    <p class="sub" id="r4stat">Предложение 1 из 2</p>
+    <div class="btn hidden" id="btnR4">Дальше ➡</div>
+  </div>
+</section>
+
+<!-- R5: поймай звук -->
+<section class="screen" id="sR5">
+  <div class="wrap">
+    <div class="prog"><span>Задание 5 из 13</span><div class="bar"><i id="pR5"></i></div></div>
+    <h2>Поймай звук «ш»</h2>
+    <p class="sub">Назови, что нарисовано. Нажми картинки, в названии которых слышится «ш»</p>
+    <div class="row" id="r5pics" style="gap:12px"></div>
+    <p class="sub" id="r5stat">Отмечено: 0 из 3</p>
+    <div class="btn hidden" id="btnR5">Дальше ➡</div>
+  </div>
+</section>
+
+<!-- R6: один - много -->
+<section class="screen" id="sR6">
+  <div class="wrap">
+    <div class="prog"><span>Задание 6 из 13</span><div class="bar"><i id="pR6"></i></div></div>
+    <h2>Один — много</h2>
+    <p class="sub">Прочитай слово. Как сказать, если предметов много?</p>
+    <div class="card"><span class="readtext" id="r6word" style="font-size:clamp(30px,5.6vw,58px)"></span></div>
+    <div class="row" id="r6opts"></div>
+    <p class="sub" id="r6stat">Слово 1 из 3</p>
+    <div class="btn hidden" id="btnR6">Дальше ➡</div>
+  </div>
+</section>
+
+<!-- R7: собери предложение -->
+<section class="screen" id="sR7">
+  <div class="wrap">
+    <div class="prog"><span>Задание 7 из 13</span><div class="bar"><i id="pR7"></i></div></div>
+    <h2>Собери предложение</h2>
+    <p class="sub">Нажимай слова по порядку — чтобы получилось предложение</p>
+    <div class="slotbox" id="r7slots"></div>
+    <div class="row" id="r7tiles"></div>
+    <p class="sub" id="r7stat" style="font-size:clamp(13px,2vw,17px);color:#7a6a3f">Из этих слов должно получиться предложение</p>
+    <div class="btn hidden" id="btnR7">Дальше ➡</div>
+  </div>
+</section>
+
+
+<!-- ДАЛЬШЕ: СКОРОГОВОРКА -->
+
+<!-- ================= СКОРОГОВОРКА (середина) ================= -->
+<section class="screen" id="sSkor">
   <div class="wrap">
     <h2>Скороговорка</h2>
-    <video id="vidSkor" src="video/skorogovorka.mp4" poster="images/poster_skorogovorka.jpg" playsinline preload="auto"
-           style="max-width:min(760px,92%);border-radius:18px;background:#fff;box-shadow:0 8px 22px rgba(90,80,40,.15)"></video>
-    <div class="card"><span class="readtext" style="font-size:clamp(18px,3.4vw,32px)"><span class="vowel">У</span>ч<span class="vowel">е</span>н<span class="vowel">и</span>к <span class="vowel">у</span>ч<span class="vowel">и</span>л <span class="vowel">у</span>р<span class="vowel">о</span>к<span class="vowel">и</span>,<br><span class="vowel">у</span> н<span class="vowel">е</span>г<span class="vowel">о</span> в ч<span class="vowel">е</span>рн<span class="vowel">и</span>л<span class="vowel">а</span>х щ<span class="vowel">ё</span>к<span class="vowel">и</span>.</span></div>
-    <div class="btn ghost small" id="btnSkorAgain">▶ Послушать ещё раз</div>
-    <p class="sub">Повтори три раза: сначала медленно, потом быстрее!</p>
-    <div class="btn" id="btnSkor">Повторил ➡</div>
-  </div>
-</section>
-
-<!-- ЧТЕНИЕ 1: первый звук -->
-<section class="screen" id="r1">
-  <div class="wrap">
-    <div class="prog"><span>Часть 1 · Чтение · Задание 1 из 4</span><span class="bar"><i id="p1"></i></span></div>
-    <h2>Прочитай слова</h2>
-    <div class="card"><div class="syl">
-      <div class="syl-cell"><span class="cons">К</span><span class="cons">Н</span><span class="vowel">И</span><span class="cons">Г</span><span class="vowel">А</span></div>
-      <div class="syl-cell"><span class="cons">Ш</span><span class="cons">К</span><span class="vowel">О</span><span class="cons">Л</span><span class="vowel">А</span></div>
-      <div class="syl-cell"><span class="cons">Д</span><span class="cons">Р</span><span class="vowel">У</span><span class="cons">Г</span></div>
-    </div></div>
-    <p class="sub">Прочитай вслух эти слова</p>
-    <div class="btn" id="btnR1">Дальше ➡</div>
-  </div>
-</section>
-
-<!-- ЧТЕНИЕ 2: гласная -->
-<section class="screen" id="r2">
-  <div class="wrap">
-    <div class="prog"><span>Часть 1 · Чтение · Задание 2 из 4</span><span class="bar"><i id="p2"></i></span></div>
-    <h2>Прочитай и ответь</h2>
-    <div class="card"><span class="readtext" style="font-size:clamp(20px,3.8vw,36px);line-height:1.85"><span class="vowel">У</span> <span class="cons">М</span><span class="vowel">а</span><span class="cons">ш</span><span class="vowel">и</span> <span class="cons">б</span><span class="vowel">ы</span><span class="cons">л</span> <span class="cons">к</span><span class="vowel">о</span><span class="cons">т</span>.<br><span class="cons">К</span><span class="vowel">о</span><span class="cons">т</span> <span class="cons">с</span><span class="cons">п</span><span class="vowel">а</span><span class="cons">л</span> <span class="cons">н</span><span class="vowel">а</span> <span class="vowel">о</span><span class="cons">к</span><span class="cons">н</span><span class="vowel">е</span>.</span></div>
-    <p class="sub">Прочитай и ответь вслух: где спал кот?</p>
-    <div class="btn" id="btnR2">Дальше ➡</div>
-  </div>
-</section>
-
-<!-- ЧТЕНИЕ 3: буквы -->
-<section class="screen" id="r3">
-  <div class="wrap">
-    <div class="prog"><span>Часть 1 · Чтение · Задание 3 из 4</span><span class="bar"><i id="p3"></i></span></div>
-    <h2>Найди лишнее слово</h2>
-    <div class="card"><div class="syl small">
-      <div class="syl-cell pick" data-ok="0"><span class="cons">Л</span><span class="vowel">И</span><span class="cons">С</span><span class="vowel">А</span></div>
-      <div class="syl-cell pick" data-ok="1"><span class="cons">Д</span><span class="vowel">О</span><span class="cons">М</span></div>
-      <div class="syl-cell pick" data-ok="0"><span class="cons">З</span><span class="vowel">А</span><span class="vowel">Я</span><span class="cons">Ц</span></div>
-      <div class="syl-cell pick" data-ok="0"><span class="cons">В</span><span class="vowel">О</span><span class="cons">Л</span><span class="cons">К</span></div>
-    </div></div>
-    <p class="sub">Прочитай слова и скажи вслух: какое слово лишнее?</p>
-    <p class="sub" style="margin-top:4px">Баловашка тоже выбрал слово — и ошибся. Объясни ему, почему это слово лишнее</p>
-    <div class="btn" id="btnR3">Дальше ➡</div>
-  </div>
-</section>
-
-<!-- ЧТЕНИЕ 4: слог -->
-<section class="screen" id="r4">
-  <div class="wrap">
-    <div class="prog"><span>Часть 1 · Чтение · Задание 4 из 4</span><span class="bar"><i id="p4"></i></span></div>
-    <h2>Составь слово</h2>
-    <div class="slotbox" id="wordSlots"></div>
-    <div class="row nowrap" id="letterTiles"></div>
-    <p class="sub">Нажимай буквы по порядку — чтобы получилось слово</p>
-    <div class="btn" id="btnR4">Дальше ➡</div>
-  </div>
-</section>
-
-<!-- РАЗВИЛКА -->
-<section class="screen" id="sbr">
-  <div class="wrap">
-    <img class="hero" src="images/razvilka.jpg" alt="Поиграем с числами">
-    <p class="big">Поиграем ещё с числами — или отдохнём и продолжим завтра?</p>
+    <video class="hero" id="vidSkor" src="video/skorogovorka.mp4" poster="images/poster_skorogovorka.jpg"
+           playsinline preload="auto"></video>
+    <p class="sub">Послушай и повтори три раза</p>
     <div class="row">
-      <div class="btn" id="btnPart2">Играем вторую часть! ➡</div>
-      <div class="btn ghost" id="btnLater">Завтра продолжим 🌙</div>
+      <div class="btn" id="btnSkorAgain">▶ Послушать</div>
+      <div class="btn ghost" id="btnSkor">Дальше ➡</div>
     </div>
   </div>
 </section>
 
-<!-- ЧАСТЬ 2: МАТЕМАТИКА 1 -->
-<section class="screen" id="m1">
+<!-- ================= СЧЁТ: 6 ЗАДАНИЙ ================= -->
+
+<!-- M1: цифра и количество (с ловушкой) -->
+<section class="screen" id="sM1">
   <div class="wrap">
-    <div class="prog"><span>Часть 2 · Счёт · Задание 1 из 4</span><span class="bar"><i id="pm1"></i></span></div>
-    <h2>Разложи на две тарелки</h2>
-    <img src="images/babushka_pirog.jpg" alt="бабушка с пирогом" style="height:clamp(120px,20vw,210px);border-radius:18px;background:#fff;box-shadow:0 8px 22px rgba(90,80,40,.15)">
-    <div class="source" id="srcShells"></div>
-    <div class="plates">
-      <div class="plate" id="plateA"></div>
-      <div class="plate" id="plateB"></div>
-    </div>
-    <div class="sub" id="plateCount">Разложено: 0 из 9</div>
-    <p class="sub">Бабушка испекла девять пирожков. Разложи их на две тарелки. Как можно?</p>
-    <div class="row"><div class="btn ghost small hidden" id="btnAgain2">↺ Разложить по-другому</div></div>
-    <div class="sub hidden" id="variantsBox"></div>
-    <div class="btn" id="btnM1">Дальше ➡</div>
+    <div class="prog"><span>Задание 8 из 13</span><div class="bar"><i id="pM1"></i></div></div>
+    <h2>Где три предмета?</h2>
+    <p class="sub">Нажми все картинки, где предметов три</p>
+    <div class="row" id="m1cards" style="gap:14px"></div>
+    <p class="sub" id="m1stat">Найдено: 0 из 2</p>
+    <div class="btn hidden" id="btnM1">Дальше ➡</div>
   </div>
 </section>
 
-<!-- МАТЕМАТИКА 2: двумя руками -->
-<section class="screen" id="m2">
+<!-- M2: посчитай в хаосе -->
+<section class="screen" id="sM2">
   <div class="wrap">
-    <div class="prog"><span>Часть 2 · Счёт · Задание 2 из 4</span><span class="bar"><i id="pm2"></i></span></div>
-    <h2>Что спряталось в окошке?</h2>
-    <div class="house">
-      <div class="roof"></div>
-      <div class="roof-num">10</div>
-      <div class="walls"><div class="flat">6</div><div class="flat">?</div></div>
-    </div>
-    <p class="sub">Сколько нужно добавить к шести, чтобы стало десять?</p>
-    <div class="row">
-      <div class="btn opt" data-ok="0">3</div>
-      <div class="btn opt" data-ok="1">4</div>
-      <div class="btn opt" data-ok="0">5</div>
-    </div>
-    <div class="btn" id="btnM2">Дальше ➡</div>
+    <div class="prog"><span>Задание 9 из 13</span><div class="bar"><i id="pM2"></i></div></div>
+    <h2>Посчитай и скажи, сколько всего</h2>
+    <div class="card" id="m2field" style="max-width:min(760px,94%);min-height:180px;display:flex;flex-wrap:wrap;
+         align-items:center;justify-content:center;gap:6px;padding:14px"></div>
+    <div class="row" id="m2opts"></div>
+    <div class="btn hidden" id="btnM2">Дальше ➡</div>
   </div>
 </section>
 
-<!-- МАТЕМАТИКА 3: домик -->
-<section class="screen" id="m3">
+<!-- M3: задачка в картинках -->
+<section class="screen" id="sM3">
   <div class="wrap">
-    <div class="prog"><span>Часть 2 · Счёт · Задание 3 из 4</span><span class="bar"><i id="pm3"></i></span></div>
-    <h2>Сравни</h2>
-    <div class="card"><span class="syl" style="font-size:clamp(24px,4.8vw,46px)">7 + 2 <span style="color:#B9C7A8">?</span> 5 + 5</span></div>
-    <div class="row">
-      <div class="btn" data-ans="more">&gt;</div>
-      <div class="btn" data-ans="less">&lt;</div>
-      <div class="btn" data-ans="eq">=</div>
-    </div>
-    <p class="sub">Посчитай и нажми нужный знак</p>
-    <div class="btn" id="btnM3">Дальше ➡</div>
+    <div class="prog"><span>Задание 10 из 13</span><div class="bar"><i id="pM3"></i></div></div>
+    <h2>Реши задачу</h2>
+    <p class="sub" id="m3text" style="font-weight:700;color:#2b2b2b"></p>
+    <div class="card" id="m3field" style="max-width:min(760px,94%);display:flex;flex-wrap:wrap;gap:8px;
+         align-items:center;justify-content:center;padding:12px"></div>
+    <div class="row" id="m3opts"></div>
+    <p class="sub" id="m3stat">Задача 1 из 2</p>
+    <div class="btn hidden" id="btnM3">Дальше ➡</div>
   </div>
 </section>
 
-<!-- МАТЕМАТИКА 4: в уме -->
-<section class="screen" id="m4">
+
+<!-- ДАЛЬШЕ: СЧЁТ (6 заданий) -->
+
+<!-- M4: сделай поровну -->
+<section class="screen" id="sM4">
   <div class="wrap">
-    <div class="prog"><span>Часть 2 · Счёт · Задание 4 из 4</span><span class="bar"><i id="pm4"></i></span></div>
-    <h2>Задачка в два действия</h2>
-    <div class="card"><span class="readtext" style="font-size:clamp(19px,3.8vw,36px);line-height:1.4">Было 4 яблока.<br>Принесли ещё 3.<br>2 съели. Сколько осталось?</span><div class="example">4 + 3 − 2 = ?</div></div>
-    <p class="sub">Посчитай по порядку — сколько осталось?</p>
-    <div class="row">
-      <div class="btn opt" data-ok="0">4</div>
-      <div class="btn opt" data-ok="1">5</div>
-      <div class="btn opt" data-ok="0">6</div>
-    </div>
-    <div class="btn" id="btnM4">Дальше ➡</div>
+    <div class="prog"><span>Задание 11 из 13</span><div class="bar"><i id="pM4"></i></div></div>
+    <h2>Сделай поровну</h2>
+    <p class="sub">Слева пять конфет, справа три. Как сделать, чтобы стало поровну?</p>
+    <div class="row" style="gap:26px" id="m4plates"></div>
+    <div class="row" id="m4btns"></div>
+    <p class="sub" id="m4stat">Найдено способов: 0 из 2</p>
+    <div class="btn hidden" id="btnM4">Дальше ➡</div>
   </div>
 </section>
 
-<!-- РЕЗУЛЬТАТ -->
-<section class="screen" id="fin">
+<!-- M5: потерянные цифры -->
+<section class="screen" id="sM5">
   <div class="wrap">
-    <h1>Готово! Вот что у нас получилось</h1>
-    <div class="result">
-      <h3>📖 Чтение</h3>
-      <div class="lvl" id="lvlRead">—</div>
+    <div class="prog"><span>Задание 12 из 13</span><div class="bar"><i id="pM5"></i></div></div>
+    <h2>Вставь потерянные цифры</h2>
+    <p class="sub">Какие цифры потерялись?</p>
+    <div class="row nowrap" id="m5row" style="gap:clamp(5px,1.3vw,12px);align-items:center;justify-content:center"></div>
+    <div class="row nowrap" id="m5tiles" style="gap:clamp(5px,1.3vw,12px);justify-content:center"></div>
+    <div class="btn hidden" id="btnM5">Дальше ➡</div>
+  </div>
+</section>
+
+<!-- M6: закономерность -->
+<section class="screen" id="sM6">
+  <div class="wrap">
+    <div class="prog"><span>Задание 13 из 13</span><div class="bar"><i id="pM6"></i></div></div>
+    <h2>Продолжи ряд</h2>
+    <div class="card" id="m6row" style="font-size:clamp(24px,5vw,48px);font-weight:900;letter-spacing:8px"></div>
+    <div class="row" id="m6opts"></div>
+    <p class="sub" id="m6stat">Ряд 1 из 2</p>
+    <div class="btn hidden" id="btnM6">Дальше ➡</div>
+  </div>
+</section>
+
+<!-- ФИНАЛ: пословица -->
+<section class="screen" id="sPosl">
+  <div class="wrap">
+    <img class="hero pop" src="images/final_read.jpg" alt="Наташа читает книжку вместе с Яшей"
+         style="max-height:30vh">
+    <h2>Пословица</h2>
+    <div class="card" style="max-width:min(700px,92%)">
+      <span class="poslovitsa">Кто много читает — тот много знает.</span>
+    </div>
+    <p class="sub">Повтори пословицу вместе с Яшей</p>
+    <div class="btn" id="btnPosl">Дальше ➡</div>
+  </div>
+</section>
+
+<!-- ФИНАЛ: три звёздочки -->
+<section class="screen" id="sStars">
+  <div class="wrap">
+    <div class="starrow" id="starRow"><span>⭐</span><span>⭐</span><span>⭐</span></div>
+    <h1>Ты прошёл все ступеньки!</h1>
+    <img class="hero pop" src="images/zvezda.jpg" alt="Яша вручает звёздочки">
+    <p class="sub" id="starText">Яша вручает тебе три звёздочки: за чтение, за счёт и за смекалку!</p>
+    <div class="btn" id="btnStars">Дальше ➡</div>
+  </div>
+</section>
+
+<!-- РЕЗУЛЬТАТ: паспорт для мамы -->
+<section class="screen" id="sResult">
+  <div class="wrap">
+    <h1>Результат</h1>
+    <div class="passport">
+      <h4>Чтение</h4>
+      <p class="lvl" id="lvlRead" style="margin:2px 0"></p>
       <p id="txtRead"></p>
-      <h3>🔢 Счёт</h3>
-      <div class="lvl" id="lvlMath">—</div>
+      <h4>Счёт</h4>
+      <p class="lvl" id="lvlMath" style="margin:2px 0"></p>
       <p id="txtMath"></p>
+      <h4>Маршрут: три первых шага</h4>
+      <ol id="route"></ol>
       <div class="dont" id="dont"></div>
+      <h4>Дневник прогресса</h4>
+      <p style="font-size:clamp(12px,2vw,16px);color:#6b5a2f">Отмечайте успехи — цифра = количество, буква = звук.</p>
+      <div id="diary"></div>
     </div>
     <div class="row">
-      <div class="btn" id="btnSend">📨 Отправить Наташе</div>
-      <div class="btn ghost" id="btnAgain">🔁 Сыграть ещё</div>
+      <div class="btn" id="btnSend">💬 Отправить Наташе</div>
+      <div class="btn ghost small" id="btnAgain">↺ Пройти заново</div>
     </div>
-    <img class="hero pop" id="finalPic" src="images/final_read.jpg" alt="Наташа читает книжку, рядом Яша и Баловашка">
-    <p class="sub" id="sendHint"></p>
+    <p class="sub" id="sendHint">Нажмите кнопку — текст скопируется, его можно отправить в ВК или Telegram</p>
   </div>
 </section>
 
-<!-- ПОСЛОВИЦА И ЗВЁЗДОЧКА -->
-<section class="screen" id="sstar">
-  <div class="wrap">
-    <img class="logo" src="images/logo.png" alt="Яша">
-    <img src="images/zvezda.jpg" alt="Яша вручает звёздочку" style="max-width:min(760px,92%);border-radius:18px;background:#fff;box-shadow:0 8px 22px rgba(90,80,40,.15)">
-    <h2>Яша дарит тебе звёздочку за старание!</h2>
-    <div class="btn" id="btnStar">Посмотреть результат ➡</div>
-  </div>
-</section>
 
-<!-- ПАНЕЛЬ ДЛЯ МАМЫ -->
-<div class="mom" id="momBar">
-  <span class="lbl">Мама, отметьте:</span>
-  <div class="mark" data-v="2">✅ сам</div>
-  <div class="mark" data-v="1">⏳ с подсказкой</div>
-  <div class="mark" data-v="0">❌ не смог</div>
-</div>
-
-<audio id="voice" preload="auto"></audio>
+<!-- ФИНАЛ: ПОСЛОВИЦА + ЗВЁЗДОЧКИ -->
+<!-- финал добавлен выше -->
 
 <script>
-(function(){
-  "use strict";
-  var V = document.getElementById('voice');
-  var marks = {}, curTask = null;
-  var TASKS = ['r1','r2','r3','r4','m1','m2','m3','m4'];
-  var ORDER = {r1:'v02', r2:'v04', r3:'v06', r4:'v08', m1:'v12', m2:'v14', m3:'v16', m4:'v18'};
-  var AFTER  = {r1:'v07', r2:'v15', r3:'v13', r4:'v09', m1:'v19', m2:'v17', m3:'v07', m4:'v19'};
+/* ================== КАРКАС ПОЛНОЙ ДИАГНОСТИКИ ================== */
+var $ = function(id){ return document.getElementById(id); };
+var CUR = 's0';
 
-  function show(id, bg){
-    var l = document.querySelectorAll('.screen');
-    for (var i=0;i<l.length;i++) l[i].classList.remove('on');
-    document.getElementById(id).classList.add('on');
-    document.body.className = bg ? ('bg'+bg) : '';
-    window.scrollTo(0,0);
-  }
-  function say(file, after){
-    if (!file){ if (after) setTimeout(after, 150); return; }
-    try{
-      V.pause(); V.currentTime = 0; V.onended = null;
-      V.src = 'sounds/' + file + '.mp3';
-      V.onended = function(){ if (after) after(); };
-      var p = V.play();
-      if (p && p.catch) p.catch(function(){ setTimeout(function(){ if (after) after(); }, 400); });
-    } catch(e){ if (after) after(); }
-  }
-  function stop(){ try{ V.pause(); V.currentTime = 0; V.onended = null; }catch(e){} }
-  function prog(el,p){ el.style.width = Math.max(5, Math.min(100, Math.round(p))) + '%'; }
+function show(id){
+  var all = document.querySelectorAll('.screen');
+  for (var i=0;i<all.length;i++) all[i].classList.remove('on');
+  var el = $(id); if (el) el.classList.add('on');
+  CUR = id; stopAll(); window.scrollTo(0,0);
+  if (typeof onShow === 'function') onShow(id);
+}
 
-  /* панель мамы: показывается на каждом задании */
-  var momBar = document.getElementById('momBar');
-  function openTask(id){
-    curTask = id;
-    var marks_ = momBar.querySelectorAll('.mark');
-    for (var i=0;i<marks_.length;i++){
-      marks_[i].classList.toggle('sel', marks[id] === +marks_[i].dataset.v);
-    }
-    momBar.classList.add('on');
-  }
-  function closeTask(){ momBar.classList.remove('on'); }
-  var mk = momBar.querySelectorAll('.mark');
-  for (var i=0;i<mk.length;i++){
-    mk[i].addEventListener('click', function(){
-      if (!curTask) return;
-      marks[curTask] = +this.dataset.v;
-      for (var j=0;j<mk.length;j++) mk[j].classList.remove('sel');
-      this.classList.add('sel');
-      stop();
-      /* звучит ТОЛЬКО ваша фраза-переход (похвала из «мешочка» убрана — была двойная) */
-      var id = curTask;
-      setTimeout(function(){ if (AFTER[id]) say(AFTER[id]); }, 350);
-    });
-  }
+/* глушим всё, что играет: и фразу, и видео (иначе звуки накладываются) */
+var CUR_AUDIO = null;
+function stopAll(){
+  if (CUR_AUDIO){ try { CUR_AUDIO.pause(); } catch(e){} CUR_AUDIO = null; }
+  var vs = document.querySelectorAll('video');
+  for (var i=0;i<vs.length;i++){ try { vs[i].pause(); } catch(e){} }
+}
 
-  /* ── ход игры ── */
-  document.getElementById('btnStart').addEventListener('click', function(){
-    show('s1',1); say('v01');
-  });
-  document.getElementById('btnGo1').addEventListener('click', function(){
-    stop(); show('szag', 8);
-    var v = document.getElementById('vidZag'), sign = document.getElementById('zagSign');
-    if (v && v.readyState >= 1){          /* видео загадки есть — играем его */
-      if (sign) sign.style.display = 'none';
-      v.style.display = 'block';
-      try { v.currentTime = 0; v.play(); } catch(e){}
-    }
-  });
-  document.getElementById('btnZag').addEventListener('click', function(){
-    stop(); show('sotg', 10); say('v23');
-    var vk = document.getElementById('vidKniga');
-    if (vk) { try { vk.currentTime = 0; vk.play(); } catch(e){} }
-  });
-  document.getElementById('btnOtg').addEventListener('click', function(){
-    stop(); show('sskor', 11);
-    var v = document.getElementById('vidSkor');
-    if (!v) { say('v28'); return; }
-    v.onended = function(){ setTimeout(function(){ say('v28'); }, 300); };
-    var pr = v.play();
-    if (pr && pr.catch) pr.catch(function(){ setTimeout(function(){ say('v28'); }, 400); });
-  });
-  document.getElementById('btnSkor').addEventListener('click', function(){ stop(); goTask('r1', 12); });
+/* озвучка: mp3 из sounds/ — если файла нет, просто без звука */
+function say(name, after){
+  stopAll();
+  var a = new Audio('sounds/' + name + '.mp3');
+  CUR_AUDIO = a;
+  a.onended = function(){ if (after) after(); };
+  a.onerror = function(){ if (after) setTimeout(after, 150); };
+  try { a.play().catch(function(){ if (after) setTimeout(after, 150); }); }
+  catch(e){ if (after) setTimeout(after, 150); }
+}
 
-  function goTask(id, pct){
-    stop(); show(id, 3); openTask(id);
-    if (id === 'm1' && typeof initPlates === 'function') initPlates();
-    if (ORDER[id]){
-      if (id === 'r2'){ say(ORDER[id], function(){ setTimeout(function(){ say('v21'); }, 500); }); }
-      else if (id === 'r3'){ say(ORDER[id], function(){ setTimeout(function(){ say('v25'); }, 500); }); }
-      else { say(ORDER[id]); }
-    }
-    var bar = {r1:'p1',r2:'p2',r3:'p3',r4:'p4',m1:'pm1',m2:'pm2',m3:'pm3',m4:'pm4'}[id];
-    if (bar) prog(document.getElementById(bar), pct);
-  }
+/* видео на заставке: пробуем со звуком; если браузер не дал — кнопка «послушать ещё раз» */
+function playVid(id, withSound){ stopAll(); var v = $(id); if (!v) return;
+  try { v.muted = !withSound; v.currentTime = 0; var p = v.play();
+        if (p && p.catch) p.catch(function(){ v.muted = false; v.play(); }); } catch(e){} }
 
-  document.getElementById('btnR1').addEventListener('click', function(){ closeTask(); goTask('r2', 30); });
-  document.getElementById('btnR2').addEventListener('click', function(){ closeTask(); goTask('r3', 45); });
-  document.getElementById('btnR3').addEventListener('click', function(){ closeTask(); goTask('r4', 60); });
-  document.getElementById('btnR4').addEventListener('click', function(){ closeTask(); show('sbr',3); say('v10'); });
+$('btnReplayStart').addEventListener('click', function(){ playVid('vidStart', true); });
+$('btnStart').addEventListener('click', function(){ show('sZag1'); say('z1'); });
+$('btnZ1again').addEventListener('click', function(){ say('z1'); });
+$('btnZ1').addEventListener('click', function(){ show('sOtg1'); say('o1'); });
+$('btnO1').addEventListener('click', function(){ show('sZag2'); say('z2'); });
+$('btnZ2again').addEventListener('click', function(){ say('z2'); });
+$('btnZ2').addEventListener('click', function(){ show('sOtg2'); say('o2'); });
+$('btnO2').addEventListener('click', function(){ show('sR1'); say('r1'); });
 
-  document.getElementById('btnPart2').addEventListener('click', function(){
-    stop();
-    say('v11', function(){ setTimeout(function(){ goTask('m1', 20); }, 300); });
-  });
-  document.getElementById('btnLater').addEventListener('click', function(){
-    closeTask(); stop();
-    show('fin', 5);
-    document.getElementById('txtRead').textContent = 'Первую часть мы прошли — вторую (числа) поиграем завтра: откройте игру снова и выберите «Играем вторую часть!».';
-    document.getElementById('txtMath').textContent = 'Пока не проходили.';
-    document.getElementById('btnSend').classList.remove('hidden');
-  });
-
-  document.getElementById('btnM1').addEventListener('click', function(){ closeTask(); goTask('m2', 40); });
-  document.getElementById('btnM2').addEventListener('click', function(){ closeTask(); goTask('m3', 60); });
-  document.getElementById('btnM3').addEventListener('click', function(){ closeTask(); goTask('m4', 80); });
-  document.getElementById('btnM4').addEventListener('click', function(){
-    closeTask(); show('sstar', 95);
-    say('v27');                       /* только похвала со звёздочкой — без наложений */
-  });
-  document.getElementById('btnStar').addEventListener('click', function(){ stop(); finish(); });
-
-  /* пирожки: перетаскивание пальцем ИЛИ клик-клик (запасной вариант) */
-  function initPlates(){
-    var src = document.getElementById('srcShells');
-    var a = document.getElementById('plateA');
-    var b = document.getElementById('plateB');
-    var counter = document.getElementById('plateCount');
-    var placed = 0, picked = null, found = [];
-    var againBtn = document.getElementById('btnAgain2');
-    var varBox = document.getElementById('variantsBox');
-    src.innerHTML = ''; a.innerHTML = ''; b.innerHTML = '';
-    if (varBox){ varBox.textContent = ''; varBox.classList.add('hidden'); }
-    if (againBtn) againBtn.classList.add('hidden');
-
-    var TOTAL = 9;
-    function updateCounter(){ if (counter) counter.textContent = 'Разложено: ' + placed + ' из ' + TOTAL; }
-
-    function countIn(pl){ return pl.querySelectorAll('img').length; }
-
-    function afterPut(){
-      if (placed === TOTAL){
-        var ca = countIn(a), cb = countIn(b);
-        var v = Math.min(ca, cb) + ' и ' + Math.max(ca, cb);
-        if (found.indexOf(v) === -1) found.push(v);
-        if (varBox){
-          varBox.textContent = '🧮 ' + (found.length > 1 ? 'Ты нашёл варианты: ' : 'Ты разложил: ') +
-                               found.join('  ·  ') + (found.length > 1 ? ' — как здорово!' : '');
-          varBox.classList.remove('hidden');
-        }
-        if (againBtn) againBtn.classList.remove('hidden');
-      }
-    }
-
-    function put(plate, el){
-      el.dataset.done = '1';
-      el.style.outline = '';
-      el.style.opacity = '';
-      plate.appendChild(el);
-      placed++; picked = null;
-      updateCounter();
-      afterPut();
-    }
-
-    if (againBtn){
-      againBtn.onclick = function(){
-        var all = a.querySelectorAll('img'), all2 = b.querySelectorAll('img'), k;
-        for (k=0;k<all.length;k++){ all[k].dataset.done=''; src.appendChild(all[k]); }
-        for (k=0;k<all2.length;k++){ all2[k].dataset.done=''; src.appendChild(all2[k]); }
-        placed = 0; picked = null; updateCounter();
-        againBtn.classList.add('hidden');
-      };
-    }
-
-    for (var i=0;i<TOTAL;i++){
-      (function(){
-        var im = document.createElement('img');
-        im.src = 'images/pirog.jpg'; im.alt = 'пирожок';
-        im.className = 'drag';
-        im.addEventListener('pointerdown', function(e){
-          if (im.dataset.done === '1') return;
-          e.preventDefault();
-          var rect = im.getBoundingClientRect();
-          var ghost = im.cloneNode();
-          ghost.style.cssText = 'position:fixed;left:' + rect.left + 'px;top:' + rect.top + 'px;width:' + rect.width +
-                                'px;height:' + rect.height + 'px;pointer-events:none;z-index:9999;opacity:.95;';
-          document.body.appendChild(ghost);
-          im.style.opacity = '.25';
-          var sx = e.clientX, sy = e.clientY, moved = false;
-
-          function onMove(ev){
-            var dx = ev.clientX - sx, dy = ev.clientY - sy;
-            if (Math.abs(dx) > 8 || Math.abs(dy) > 8) moved = true;
-            ghost.style.transform = 'translate(' + dx + 'px,' + dy + 'px)';
-          }
-          function onUp(ev){
-            document.removeEventListener('pointermove', onMove);
-            document.removeEventListener('pointerup', onUp);
-            var el = document.elementFromPoint(ev.clientX, ev.clientY);
-            var plate = el && el.closest ? el.closest('.plate') : null;
-            if (ghost.parentNode) ghost.parentNode.removeChild(ghost);
-            im.style.opacity = '';
-            if (plate){ put(plate, im); }
-            else if (!moved){   /* это был обычный клик — выбираем пирожок */
-              var all = src.querySelectorAll('img');
-              for (var k=0;k<all.length;k++) all[k].style.outline = '';
-              im.style.outline = '6px solid #2E7D32';
-              picked = im;
-            }
-          }
-          document.addEventListener('pointermove', onMove);
-          document.addEventListener('pointerup', onUp);
-        });
-        src.appendChild(im);
-      })();
-    }
-    function plateClick(plate){
-      return function(){ if (picked) put(plate, picked); };
-    }
-    a.onclick = plateClick(a);
-    b.onclick = plateClick(b);
-    updateCounter();
-  }
-  initPlates();
-
-  /* ── задание «Составь слово» (7 лет) ── */
-  (function(){
-    var slots = document.getElementById('wordSlots'), tiles = document.getElementById('letterTiles');
-    if (!slots || !tiles) return;
-    var WORD = ['Ш','К','О','Л','А'], step = 0;
-    var mix = WORD.slice();
-    for (var i=mix.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=mix[i]; mix[i]=mix[j]; mix[j]=t; }
-    mix.forEach(function(ch){
-      var el = document.createElement('div');
-      el.className = 'tile';
-      el.innerHTML = ('АЕЁИОУЫЭЮЯ'.indexOf(ch) >= 0)
-        ? '<span class="vowel">'+ch+'</span>'
-        : '<span class="cons">'+ch+'</span>';
-      el.addEventListener('click', function(){
-        if (el.dataset.used === '1') return;
-        if (ch === WORD[step]){
-          el.dataset.used = '1'; el.classList.add('used');
-          var s = document.createElement('div'); s.className = 'slot';
-          s.innerHTML = ('АЕЁИОУЫЭЮЯ'.indexOf(ch) >= 0)
-            ? '<span class="vowel">'+ch+'</span>'
-            : '<span class="cons">'+ch+'</span>';
-          slots.appendChild(s); step++;
-        } else {
-          el.classList.add('shake');
-          setTimeout(function(){ el.classList.remove('shake'); }, 420);
-        }
-      });
-      tiles.appendChild(el);
-    });
-  })();
-
-  /* ── видео: клик = пауза/играть, кнопка «ещё раз» ── */
-  (function(){
-    var vz = document.getElementById('vidZag');
-    if (vz) vz.addEventListener('click', function(){ vz.paused ? vz.play() : vz.pause(); });
-    var vs = document.getElementById('vidSkor');
-    if (vs) vs.addEventListener('click', function(){ vs.paused ? vs.play() : vs.pause(); });
-    var again = document.getElementById('btnSkorAgain');
-    if (again && vs) again.addEventListener('click', function(){ stop(); vs.currentTime = 0; vs.play(); });
-  })();
-
-  /* ── клик по слову в «Найди лишнее» ── */
-  (function(){
-    var picks = document.querySelectorAll('.pick');
-    Array.prototype.forEach.call(picks, function(b){
-      b.addEventListener('click', function(){
-        Array.prototype.forEach.call(picks, function(x){ x.classList.remove('ok','no'); });
-        if (b.dataset.ok === '1'){ b.classList.add('ok'); }
-        else { b.classList.add('no'); setTimeout(function(){ b.classList.remove('no'); }, 700); }
-      });
-    });
-  })();
-
-  /* ── варианты ответов (домик, задачка) ── */
-  (function(){
-    var opts = document.querySelectorAll('.opt');
-    Array.prototype.forEach.call(opts, function(b){
-      b.addEventListener('click', function(){
-        var sibs = b.parentNode.querySelectorAll('.opt');
-        Array.prototype.forEach.call(sibs, function(x){ x.classList.remove('ok','no'); });
-        if (b.dataset.ok === '1'){ b.classList.add('ok'); }
-        else { b.classList.add('no'); setTimeout(function(){ b.classList.remove('no'); }, 700); }
-      });
-    });
-  })();
-
-  /* ── задание «Сравни» (7 лет) ── */
-  (function(){
-    var m3 = document.getElementById('m3');
-    if (!m3) return;
-    var btns = m3.querySelectorAll('.btn[data-ans]');
-    Array.prototype.forEach.call(btns, function(b){
-      b.addEventListener('click', function(){
-        Array.prototype.forEach.call(btns, function(x){ x.classList.remove('yes','no'); });
-        if (b.dataset.ans === 'less'){ b.classList.add('yes'); }
-        else { b.classList.add('no'); setTimeout(function(){ b.classList.remove('no'); }, 700); }
-      });
-    });
-  })();
-
-  /* (для 7 лет блок «наглядно» не нужен — задачки читаются текстом) */
-
-  /* ── результат ── */
-  var READ_TXT = {
-    zvuki:{lvl:'⚪ Звуки', t:'Малыш пока не слышит, из каких звуков состоит слово — это самая первая ступенька. Если её пропустить, буквы он выучит, а читать не станет: слоги не складываются. Начинаем со звуков — «поймай звук», «первый звук», хлопки по слогам. Через 2–3 недели вы услышите: он сам назовёт первый звук.'},
-    bukvy:{lvl:'🟢 Буквы', t:'Часть букв он уже знает — самое время подружиться с остальными, чтобы каждая была как знакомый друг. Сейчас важнее узнать буквы, чем читать. Игры: «найди букву», лото букв, мемори «буква — картинка». Когда букв станет 10–15 — перейдём к слогам.'},
-    slogi:{lvl:'🟡 Слоги', t:'Он уже складывает слоги — это настоящее чтение! Сейчас важнее всего читать слог ЦЕЛИКОМ, а не по буквам: не «М-А-МА», а «МА». Игры: паровозик, окошко, лото слогов. Через 3–4 недели он будет читать короткие слова.'},
-    slova:{lvl:'🟠 Слова', t:'Читает короткие слова и понимает их — отличный результат! Дальше наращиваем: слова из 4 букв, потом короткие фразы. Игры: «слово — картинка», мемори «слово — картинка», чего не стало.'},
-    predl:{lvl:'🔵 Предложения', t:'Читает фразу и понимает смысл — это уже уровень «читаю сам». Дальше — короткие тексты и вопросы по ним: «кто? что сделал? где?»'}
-  };
-  var MATH_TXT = {
-    legkiy:{lvl:'🟢 Лёгкий', t:'Понимает, что два числа вместе дают одно — база есть. Играем с предметами: две корзинки, поезд с вагонами, «покажи число двумя руками». Пусть проговаривает вслух: «пять и два — это семь».'},
-    sredniy:{lvl:'🟡 Средний', t:'Считает с опорой на предметы и картинки — это нормальный этап. Закрепляем состав числа до 10: домики, ключики к замку, мемори «пары к 10», «чего не стало» с парами.'},
-    um:{lvl:'🔴 Считает в уме', t:'Считает без подсказок — отличный результат! Дальше: задачи на вычитание («из 10 убрали 4»), лабиринт числа, «поймай пару» на время.'}
-  };
-
-  function finish(){
-    stop(); closeTask(); show('fin', 5);
-    var r = ['r1','r2','r3','r4'].map(function(k){ return marks[k]; });
-    var m = ['m1','m2','m3','m4'].map(function(k){ return marks[k]; });
-    var rSum = r.reduce(function(a,b){ return a + (b||0); }, 0);
-    var mSum = m.reduce(function(a,b){ return a + (b||0); }, 0);
-
-    var rKey = 'zvuki';
-    if (r[3] >= 1) rKey = 'slogi';            /* задание 4 — составь слово */
-    if (r[0] >= 1 || r[2] >= 1) rKey = 'slova'; /* слова и «найди лишнее» */
-    if (r[1] >= 1) rKey = 'predl';            /* прочитал и ответил */
-    if (rSum <= 2) rKey = 'zvuki';
-
-    var mKey = 'legkiy';
-    if (m[1] >= 1 || m[3] >= 1) mKey = 'um';    /* домик до 10 и задача в два действия */
-    else if (m[0] >= 1 || m[2] >= 1) mKey = 'sredniy';
-
-    document.getElementById('lvlRead').textContent = READ_TXT[rKey].lvl;
-    document.getElementById('txtRead').textContent = READ_TXT[rKey].t;
-    document.getElementById('lvlMath').textContent = MATH_TXT[mKey].lvl;
-    document.getElementById('txtMath').textContent = MATH_TXT[mKey].t;
-
-    var dontMap = {
-      zvuki:'Сейчас не надо учить буквы и тем более давать тексты — сначала звуки.',
-      bukvy:'Пока не заставляйте писать буквы и не давайте тексты — идём через узнавание букв.',
-      slogi:'Не торопите с текстами: пока слог не читается целиком, слова будут «рассыпаться».',
-      slova:'Дальше — короткие фразы и вопросы по прочитанному: «кто? что сделал? где?»',
-      predl:'Дальше — короткие рассказы: читаем 2–3 предложения и отвечаем на вопросы, пересказываем.'
-    };
-    var isHigh = (rKey === 'slova' || rKey === 'predl');
-    document.getElementById('dont').textContent =
-      (isHigh ? '➡️ Дальше: ' : '❗ Чего сейчас не делать: ') + dontMap[rKey];
-
-    var lines = ['Чтение: ' + READ_TXT[rKey].lvl, 'Счёт: ' + MATH_TXT[mKey].lvl];
-    ['r1','r2','r3','r4'].forEach(function(k,i){ lines.push('Чтение ' + (i+1) + ': ' + (marks[k]===2?'✅ сам':marks[k]===1?'⏳ с подсказкой':marks[k]===0?'❌ не смог':'— не отмечено')); });
-    ['m1','m2','m3','m4'].forEach(function(k,i){ lines.push('Счёт ' + (i+1) + ': ' + (marks[k]===2?'✅ сам':marks[k]===1?'⏳ с подсказкой':marks[k]===0?'❌ не смог':'— не отмечено')); });
-    window.__resultText = 'Моя диагностика «Яша и волшебные ступеньки»:\n' + lines.join('\n');
-    say('v20', function(){ setTimeout(playFinal, 500); });
-  }
-
-  function playFinal(){
-    var img = document.getElementById('finalPic');
-    if (!img) return;
-    img.classList.remove('pop');
-    void img.offsetWidth;
-    img.classList.add('pop');
-  }
-
-  document.getElementById('btnSend').addEventListener('click', function(){
-    var t = window.__resultText || 'Диагностика пройдена';
-    navigator.clipboard && navigator.clipboard.writeText(t).catch(function(){});
-    try { prompt('Скопируйте этот текст и отправьте Наташе (в ВК или Telegram):', t); } catch(e){}
-    document.getElementById('sendHint').textContent = 'Текст скопирован. Спасибо! Наташа посмотрит и скажет, с чего начать.';
-  });
-  document.getElementById('btnAgain').addEventListener('click', function(){ stop(); location.reload(); });
-})();
+/* автостарт видео заставки */
+window.addEventListener('load', function(){
+  var v = $('vidStart'); if (!v) return;
+  /* на телефоне автозапуск со звуком запрещён — показываем постер,
+     а по нажатию «Посмотреть» играем со звуком */
+  v.muted = true;
+  var p = v.play();
+  if (p && p.catch) p.catch(function(){});
+  setTimeout(function(){ try { v.pause(); v.currentTime = 0; } catch(e){} }, 900);
+});
 </script>
+
+<script>
+/* ================= ЧТЕНИЕ: логика заданий ================= */
+var MARKS = {};
+var CUR_TASK = 0;
+
+function setProg(elId, done, total){
+  var el = $(elId); if (el) el.style.width = Math.round(done/total*100) + '%';
+}
+var PRAISE_I = 0, PRAISE_N = 3;
+function praise(after){ PRAISE_I = (PRAISE_I % PRAISE_N) + 1; say('p' + PRAISE_I, after); }
+function hintSay(){ say('h' + (1 + Math.floor(Math.random()*3))); }
+
+/* ---- панель оценок для родителя ---- */
+var MOM = null, MOMKEY = null;
+function buildMom(){
+  MOM = document.createElement('div');
+  MOM.className = 'mom';
+  MOM.innerHTML = '<span class="lbl">Как справился?</span>' +
+    '<div class="mark" data-v="2">✅ сам</div>' +
+    '<div class="mark" data-v="1">⏳ с подсказкой</div>' +
+    '<div class="mark" data-v="0">❌ не смог</div>';
+  document.body.appendChild(MOM);
+  var btns = MOM.getElementsByClassName('mark');
+  for (var i = 0; i < btns.length; i++){
+    (function(btn){
+      var apply = function(ev){
+        if (ev && ev.preventDefault) ev.preventDefault();
+        if (!MOMKEY) return;
+        MARKS[MOMKEY] = parseInt(btn.getAttribute('data-v'), 10);
+        for (var k = 0; k < btns.length; k++) btns[k].classList.remove('sel');
+        btn.classList.add('sel');
+        btn.classList.add('tap');
+        setTimeout(function(){ btn.classList.remove('tap'); }, 160);
+      };
+      btn.addEventListener('click', apply);
+      btn.addEventListener('touchend', apply);
+    })(btns[i]);
+  }
+}
+function showMom(key){
+  MOMKEY = key;
+  if (!MOM) buildMom();
+  MOM.classList.add('on');
+  var all = MOM.getElementsByClassName('mark');
+  for (var i=0;i<all.length;i++){
+    var v = parseInt(all[i].getAttribute('data-v'),10);
+    if (MARKS[key] !== undefined && v === MARKS[key]) all[i].classList.add('sel');
+    else all[i].classList.remove('sel');
+  }
+}
+function hideMom(){ if (MOM) MOM.classList.remove('on'); MOMKEY = null; }
+
+var TASK_OF = {
+  sR1:{n:1,key:'r1'}, sR2:{n:2,key:'r2'}, sR3:{n:3,key:'r3'}, sR4:{n:4,key:'r4'},
+  sR5:{n:5,key:'r5'}, sR6:{n:6,key:'r6'}, sR7:{n:7,key:'r7'},
+  sSkor:{n:7,key:'skor'},
+  sM1:{n:8,key:'m1'}, sM2:{n:9,key:'m2'}, sM3:{n:10,key:'m3'},
+  sM4:{n:11,key:'m4'}, sM5:{n:12,key:'m5'}, sM6:{n:13,key:'m6'},
+  sZag1:{n:0,key:'zag1'}, sOtg1:{n:0,key:'otg1'},
+  sZag2:{n:0,key:'zag2'}, sOtg2:{n:0,key:'otg2'}
+};
+function onShow(id){
+  var t = TASK_OF[id];
+  if (t) showMom(t.key); else hideMom();
+}
+function paint(word){
+  var VOW = 'АЕЁИОУЫЭЮЯ';
+  var out = '';
+  for (var i=0;i<word.length;i++){
+    var ch = word.charAt(i);
+    var isV = VOW.indexOf(ch) >= 0;
+    out += '<span class="' + (isV ? 'vowel' : 'cons') + '">' + ch + '</span>';
+  }
+  return out;
+}
+function shuffle(a){ var b = a.slice(); for (var i=b.length-1;i>0;i--){ var j = Math.floor(Math.random()*(i+1)); var t=b[i]; b[i]=b[j]; b[j]=t; } return b; }
+
+/* ---------- R1: гласные — Яше, согласные — Баловашке ---------- */
+var R1 = { letters:[['А','v'],['О','v'],['У','v'],['И','v'],['Ы','v'],
+                    ['М','c'],['К','c'],['С','c'],['Н','c'],['Л','c']], placed:0, sel:null, total:10 };
+function buildR1(){
+  var tiles = $('ltTiles'); tiles.innerHTML = '';
+  shuffle(R1.letters).forEach(function(p){
+    var d = document.createElement('div');
+    d.className = 'letter-cell'; d.style.cursor = 'pointer';
+    d.style.width = 'clamp(46px,10vw,86px)'; d.style.height = 'clamp(46px,10vw,86px)';
+    d.style.fontSize = 'clamp(24px,5.4vw,54px)';
+    d.textContent = p[0]; d.setAttribute('data-kind', p[1]);
+    d.addEventListener('click', function(){
+      var all = tiles.getElementsByClassName('letter-cell');
+      for (var k=0;k<all.length;k++) all[k].style.outline = '';
+      R1.sel = d; d.style.outline = '5px solid #2E7D32';
+    });
+    tiles.appendChild(d);
+  });
+}
+function r1Drop(kind){
+  if (!R1.sel){ hintSay(); return; }
+  if (R1.sel.getAttribute('data-kind') !== kind){
+    var el = R1.sel;
+    el.classList.add('shake'); setTimeout(function(){ el.classList.remove('shake'); }, 400);
+    hintSay();
+    return;
+  }
+  var box = kind === 'v' ? $('boxV') : $('boxC');
+  var chip = document.createElement('div');
+  chip.className = 'letter-cell';
+  chip.style.width = 'clamp(38px,6.4vw,58px)'; chip.style.height = 'clamp(38px,6.4vw,58px)';
+  chip.style.fontSize = 'clamp(20px,3.6vw,32px)';
+  chip.innerHTML = '<span class="' + (kind === 'v' ? 'vowel' : 'cons') + '">' + R1.sel.textContent + '</span>';
+  box.appendChild(chip);
+  R1.sel.remove(); R1.sel = null; R1.placed++;
+  $('r1stat').textContent = 'Разложено: ' + R1.placed + ' из ' + R1.total;
+  setProg('pR1', R1.placed, R1.total);
+  if (R1.placed === R1.total){ praise(); setTimeout(function(){ $('btnR1').classList.remove('hidden'); }, 600); }
+}
+$('hVowel').addEventListener('click', function(){ r1Drop('v'); });
+$('hCons').addEventListener('click', function(){ r1Drop('c'); });
+$('btnR1').addEventListener('click', function(){ show('sR2'); say('r2'); });
+
+/* ---------- R2: слово + картинка ---------- */
+var R2 = { words:[['ДОМ','dom'],['ЛУК','luk'],['ШАР','shar']], idx:0, pics:['dom','les','luk','syr','shar'] };
+function buildR2(){
+  var w = R2.words[R2.idx][0];
+  $('r2word').innerHTML = paint(w);
+  $('r2stat').textContent = 'Слово ' + (R2.idx+1) + ' из 3';
+  var box = $('r2pics'); box.innerHTML = '';
+  shuffle(R2.pics).forEach(function(name){
+    var im = document.createElement('img');
+    im.className = 'hero pick'; im.src = 'images/' + name + '.jpg'; im.alt = name;
+    im.style.height = '13vh'; im.style.width = 'auto'; im.style.cursor = 'pointer';
+    im.addEventListener('click', function(){
+      if (name === R2.words[R2.idx][1]){
+        im.style.outline = '6px solid #2E7D32';
+        R2.idx++; setProg('pR2', R2.idx, 3);
+        if (R2.idx < 3){ void 0; setTimeout(buildR2, 700); }
+        else { praise(); setTimeout(function(){ $('btnR2').classList.remove('hidden'); }, 600); }
+      } else {
+        im.classList.add('shake'); setTimeout(function(){ im.classList.remove('shake'); }, 400);
+        hintSay();
+      }
+    });
+    box.appendChild(im);
+  });
+}
+$('btnR2').addEventListener('click', function(){ show('sR3'); say('r3'); });
+
+/* ---------- R3: слово из слогов ---------- */
+var R3 = { rounds:[
+    {pic:'images/mama.jpg', need:['МА','МА'], tiles:['МА','МА','РЫ','БА']},
+    {pic:'', need:['РЫ','БА'], tiles:['РЫ','БА','ЖА','МЫ']}
+  ], idx:0, built:[] };
+function buildR3(){
+  var r = R3.rounds[R3.idx]; R3.built = [];
+  var pic = $('r3pic');
+  if (r.pic){ pic.src = r.pic; pic.classList.remove('hidden'); } else { pic.classList.add('hidden'); }
+  $('r3stat').textContent = 'Слово ' + (R3.idx+1) + ' из 2';
+  var slots = $('r3slots'); slots.innerHTML = '';
+  r.need.forEach(function(){ var d = document.createElement('div'); d.className = 'slot'; d.innerHTML = '&nbsp;'; slots.appendChild(d); });
+  var box = $('r3tiles'); box.innerHTML = '';
+  shuffle(r.tiles).forEach(function(syl){
+    var t = document.createElement('div'); t.className = 'tile'; t.innerHTML = paint(syl);
+    t.addEventListener('click', function(){
+      if (t.classList.contains('used')) return;
+      R3.built.push(syl); t.classList.add('used');
+      slots.children[R3.built.length-1].innerHTML = paint(syl);
+      if (R3.built.length === r.need.length){
+        if (R3.built.join('') === r.need.join('')){
+          R3.idx++; setProg('pR3', R3.idx, 2);
+          if (R3.idx < 2){ void 0; setTimeout(buildR3, 700); }
+          else { praise(); setTimeout(function(){ $('btnR3').classList.remove('hidden'); }, 600); }
+        } else {
+          slots.classList.add('shake');
+          hintSay();
+          setTimeout(function(){ slots.classList.remove('shake'); buildR3(); }, 650);
+        }
+      }
+    });
+    box.appendChild(t);
+  });
+}
+$('btnR3').addEventListener('click', function(){ show('sR4'); say('r4'); });
+
+/* ---------- R4: закончи предложение ---------- */
+var R4 = { items:[
+    {t:'Светит яркое', opts:['СОЛНЦЕ','ЛАМПА','ЛУНА'], ok:0},
+    {t:'По реке плывёт', opts:['ЛОДКА','ЛОЖКА','ЛОШАДЬ'], ok:0}
+  ], idx:0 };
+function buildR4(){
+  var it = R4.items[R4.idx];
+  $('r4text').innerHTML = paint(it.t) + ' <span style="color:#2E7D32">&hellip;</span>';
+  $('r4stat').textContent = 'Предложение ' + (R4.idx+1) + ' из 2';
+  var box = $('r4opts'); box.innerHTML = '';
+  shuffle(it.opts.map(function(_, i){ return i; })).forEach(function(i){
+    var b = document.createElement('div'); b.className = 'btn opt'; b.innerHTML = paint(it.opts[i]);
+    b.addEventListener('click', function(){
+      if (i === it.ok){
+        b.classList.add('ok'); R4.idx++; setProg('pR4', R4.idx, 2);
+        if (R4.idx < 2){ void 0; setTimeout(buildR4, 700); }
+        else { praise(); setTimeout(function(){ $('btnR4').classList.remove('hidden'); }, 600); }
+      } else { b.classList.add('no'); setTimeout(function(){ b.classList.remove('no'); }, 400); hintSay(); }
+    });
+    box.appendChild(b);
+  });
+}
+$('btnR4').addEventListener('click', function(){ show('sR5'); say('r5'); });
+
+/* ---------- R5: поймай звук «ш» ---------- */
+var R5 = { pics:[['shar',1],['grusha',1],['vishni',1],['myach',0],['syr',0],['luk',0]], picked:0 };
+function buildR5(){
+  var box = $('r5pics'); box.innerHTML = ''; R5.picked = 0;
+  shuffle(R5.pics).forEach(function(p){
+    var im = document.createElement('img');
+    im.className = 'hero pick'; im.src = 'images/' + p[0] + '.jpg'; im.alt = p[0];
+    im.style.height = '13vh'; im.style.width = 'auto'; im.style.cursor = 'pointer';
+    im.addEventListener('click', function(){
+      if (im.getAttribute('data-on') === '1') return;
+      if (p[1] === 1){
+        im.setAttribute('data-on','1'); im.style.outline = '6px solid #2E7D32';
+        R5.picked++; $('r5stat').textContent = 'Отмечено: ' + R5.picked + ' из 3';
+        setProg('pR5', R5.picked, 3);
+        if (R5.picked === 3){ praise(); setTimeout(function(){ $('btnR5').classList.remove('hidden'); }, 600); }
+      } else {
+        im.classList.add('shake'); setTimeout(function(){ im.classList.remove('shake'); }, 400);
+        hintSay();
+      }
+    });
+    box.appendChild(im);
+  });
+  $('r5stat').textContent = 'Отмечено: 0 из 3';
+}
+$('btnR5').addEventListener('click', function(){ show('sR6'); say('r6'); });
+
+/* ---------- R6: один — много ---------- */
+var R6 = { items:[
+    {one:'ДОМ', opts:['ДОМА','ДОМ','ДОМИК'], ok:0},
+    {one:'СТУЛ', opts:['СТУЛЬЯ','СТУЛ','СТУЛЬЧИК'], ok:0},
+    {one:'ОКНО', opts:['ОКНА','ОКНО','ОКОШКО'], ok:0}
+  ], idx:0 };
+function buildR6(){
+  var it = R6.items[R6.idx];
+  $('r6word').innerHTML = paint(it.one);
+  $('r6stat').textContent = 'Слово ' + (R6.idx+1) + ' из 3';
+  var box = $('r6opts'); box.innerHTML = '';
+  shuffle(it.opts.map(function(_, i){ return i; })).forEach(function(i){
+    var b = document.createElement('div'); b.className = 'btn opt'; b.innerHTML = paint(it.opts[i]);
+    b.addEventListener('click', function(){
+      if (i === it.ok){
+        b.classList.add('ok'); R6.idx++; setProg('pR6', R6.idx, 3);
+        if (R6.idx < 3){ void 0; setTimeout(buildR6, 700); }
+        else { praise(); setTimeout(function(){ $('btnR6').classList.remove('hidden'); }, 600); }
+      } else { b.classList.add('no'); setTimeout(function(){ b.classList.remove('no'); }, 400); hintSay(); }
+    });
+    box.appendChild(b);
+  });
+}
+$('btnR6').addEventListener('click', function(){ show('sR7'); say('r7'); });
+
+/* ---------- R7: собери предложение ---------- */
+var R7 = { need:['ЗИМОЙ','ИДЁТ','СНЕГ'], tiles:['СНЕГ','ЗИМОЙ','ИДЁТ'], built:[], full:'Зимой идёт снег.' };
+function buildR7(){
+  var slots = $('r7slots'); slots.innerHTML = '';
+  R7.need.forEach(function(){ var d = document.createElement('div'); d.className = 'slot'; d.innerHTML = '&nbsp;'; slots.appendChild(d); });
+  var box = $('r7tiles'); box.innerHTML = '';
+  R7.built = [];
+  shuffle(R7.tiles).forEach(function(w){
+    var t = document.createElement('div'); t.className = 'tile'; t.innerHTML = paint(w);
+    t.addEventListener('click', function(){
+      if (t.classList.contains('used')) return;
+      R7.built.push(w); t.classList.add('used');
+      slots.children[R7.built.length-1].innerHTML = paint(w);
+      if (R7.built.length === 3){
+        if (R7.built.join(' ') === R7.need.join(' ')){
+          setProg('pR7', 3, 3); praise();
+          var sl = $('r7slots');
+          sl.innerHTML = '<span class="readtext" style="font-size:clamp(20px,4vw,40px)">' + paint(R7.full) + '</span>';
+          $('r7stat').textContent = 'Получилось предложение! С большой буквы и с точкой в конце.';
+          setTimeout(function(){ $('btnR7').classList.remove('hidden'); }, 600);
+        } else {
+          slots.classList.add('shake');
+          hintSay();
+          setTimeout(function(){ slots.classList.remove('shake'); buildR7(); }, 650);
+        }
+      }
+    });
+    box.appendChild(t);
+  });
+}
+$('btnR7').addEventListener('click', function(){ show('sSkor'); playVid('vidSkor', true); });
+
+/* ---------- запуск ---------- */
+buildR1(); buildR2(); buildR3(); buildR4(); buildR5(); buildR6(); buildR7();
+</script>
+
+
+<script>
+/* ================= СЧЁТ: логика заданий ================= */
+function imgRow(name, n, h){
+  var out = '';
+  for (var i=0;i<n;i++) out += '<img src="images/' + name + '.jpg" style="height:' + h + '" alt="">';
+  return out;
+}
+
+/* ---------- M1: где три предмета (ловушка) ---------- */
+var M1 = { cards:[
+    {key:'slon',    n:3, h:'62px', ok:1, hint:'три больших слона'},
+    {key:'muravey', n:3, h:'46px', ok:1, hint:'три маленьких муравья'},
+    {key:'konfeta', n:5, h:'44px', ok:0, hint:'пять конфет'}
+  ], found:0 };
+function buildM1(){
+  var box = $('m1cards'); box.innerHTML = ''; M1.found = 0;
+  shuffle(M1.cards).forEach(function(c){
+    var d = document.createElement('div');
+    d.className = 'card pick'; d.style.cursor = 'pointer'; d.style.minWidth = '150px';
+    d.innerHTML = '<div class="row" style="gap:5px;align-items:center;justify-content:center">' + imgRow(c.key, c.n, c.h) + '</div>';
+    d.addEventListener('click', function(){
+      if (c.ok === 1 && d.getAttribute('data-on') !== '1'){
+        d.setAttribute('data-on','1'); d.style.outline = '6px solid #2E7D32';
+        M1.found++; $('m1stat').textContent = 'Найдено: ' + M1.found + ' из 2';
+        setProg('pM1', M1.found, 2);
+        if (M1.found === 2){ praise(); setTimeout(function(){ $('btnM1').classList.remove('hidden'); }, 600); }
+      } else if (c.ok === 0){
+        d.classList.add('shake'); setTimeout(function(){ d.classList.remove('shake'); }, 400);
+        hintSay();
+      }
+    });
+    box.appendChild(d);
+  });
+  $('m1stat').textContent = 'Найдено: 0 из 2';
+}
+$('btnM1').addEventListener('click', function(){ show('sM2'); say('m2'); });
+
+/* ---------- M2: посчитай в хаосе ---------- */
+var M2 = { n:7, opts:[6,7,8] };
+function buildM2(){
+  var f = $('m2field'); f.innerHTML = '';
+  for (var i=0;i<M2.n;i++){
+    var im = document.createElement('img');
+    im.src = 'images/zaec.jpg';
+    im.style.height = (30 + Math.floor(Math.random()*22)) + 'px';
+    im.style.margin = Math.floor(Math.random()*10) + 'px';
+    im.style.transform = 'rotate(' + Math.floor(Math.random()*40 - 20) + 'deg)';
+    f.appendChild(im);
+  }
+  var box = $('m2opts'); box.innerHTML = '';
+  shuffle(M2.opts).forEach(function(v){
+    var b = document.createElement('div'); b.className = 'btn opt'; b.textContent = v;
+    b.addEventListener('click', function(){
+      if (v === M2.n){
+        b.classList.add('ok'); setProg('pM2', 1, 1); praise();
+        setTimeout(function(){ $('btnM2').classList.remove('hidden'); }, 600);
+      } else { b.classList.add('no'); setTimeout(function(){ b.classList.remove('no'); }, 400); hintSay(); }
+    });
+    box.appendChild(b);
+  });
+}
+$('btnM2').addEventListener('click', function(){ show('sM3'); say('m3'); });
+
+/* ---------- M3: задачка в картинках ---------- */
+var M3 = { items:[
+    {t:'На столе было четыре яблока. Зайчик принёс ещё три. Сколько стало?',
+     add:4, plus:3, eaten:0, action:'4 + 3 = ?', opts:[6,7,8], ok:7},
+    {t:'Было семь яблок. Зайчик съел два. Сколько осталось?',
+     add:5, plus:0, eaten:2, action:'7 − 2 = ?', opts:[4,5,6], ok:5}
+  ], idx:0 };
+function buildM3(){
+  var it = M3.items[M3.idx];
+  $('m3text').textContent = it.t;
+  $('m3stat').textContent = 'Задача ' + (M3.idx+1) + ' из 2';
+  var f = $('m3field'); f.innerHTML = '';
+  f.innerHTML = imgRow('yabloko', it.add, '40px');
+  if (it.plus > 0){
+    f.innerHTML += '<span style="font-size:30px;font-weight:900;color:#2E7D32">+</span>' + imgRow('yabloko', it.plus, '40px');
+  }
+  if (it.eaten > 0){
+    f.innerHTML += '<span style="font-size:30px;font-weight:900;color:#C62828">−</span>' +
+      '<span style="opacity:.35;filter:grayscale(.7)">' + imgRow('yabloko', it.eaten, '40px') + '</span>';
+  }
+  f.innerHTML += '<div style="width:100%;text-align:center;font-size:clamp(22px,5vw,42px);font-weight:900;' +
+                 'color:#1b1b1b;letter-spacing:3px;margin-top:8px">' + it.action + '</div>';
+  var box = $('m3opts'); box.innerHTML = '';
+  shuffle(it.opts).forEach(function(v){
+    var b = document.createElement('div'); b.className = 'btn opt'; b.textContent = v;
+    b.addEventListener('click', function(){
+      if (v === it.ok){
+        b.classList.add('ok'); M3.idx++; setProg('pM3', M3.idx, 2);
+        if (M3.idx < 2){ void 0; setTimeout(buildM3, 700); }
+        else { praise(); setTimeout(function(){ $('btnM3').classList.remove('hidden'); }, 600); }
+      } else { b.classList.add('no'); setTimeout(function(){ b.classList.remove('no'); }, 400); hintSay(); }
+    });
+    box.appendChild(b);
+  });
+}
+$('btnM3').addEventListener('click', function(){ show('sM4'); say('m4'); });
+
+/* ---------- видео скороговорки ---------- */
+$('btnSkorAgain').addEventListener('click', function(){ playVid('vidSkor', true); });
+$('btnSkor').addEventListener('click', function(){ show('sM1'); say('m1'); });
+
+/* оценка «скороговорка» тоже нужна родителю */
+buildM1(); buildM2(); buildM3();
+</script>
+
+
+<script>
+/* ================= M4-M6 и финал ================= */
+
+/* ---------- M4: сделай поровну ---------- */
+var M4 = { left:5, right:3, ways:0, done:{add:false, take:false} };
+function buildM4(){
+  var box = $('m4plates'); box.innerHTML = '';
+  [[M4.left,'left'],[M4.right,'right']].forEach(function(p){
+    var d = document.createElement('div');
+    d.className = 'card'; d.style.minWidth = '150px';
+    var inner = '';
+    for (var i=0;i<p[0];i++) inner += '<img src="images/konfeta.jpg" style="height:34px;margin:2px" alt="">';
+    d.innerHTML = '<div class="row" style="gap:2px;justify-content:center"' + (inner ? '' : '') + '>' + inner + '</div>' +
+                  '<div style="font-weight:900;color:#2E7D32;font-size:clamp(16px,3vw,22px)">' + p[0] + '</div>';
+    box.appendChild(d);
+  });
+  var b = $('m4btns'); b.innerHTML = '';
+  if (!M4.done.add){
+    var b1 = document.createElement('div'); b1.className = 'btn small';
+    b1.innerHTML = '➕ Добавить 2 к меньшей';
+    b1.addEventListener('click', function(){
+      M4.right += 2; M4.left += 2; M4.done.add = true; M4.ways++;
+      afterWay('Добавили по две — стало поровну: семь и семь!');
+    });
+    b.appendChild(b1);
+  }
+  if (!M4.done.take){
+    var b2 = document.createElement('div'); b2.className = 'btn small';
+    b2.innerHTML = '➖ Убрать 2 от большей';
+    b2.addEventListener('click', function(){
+      M4.left -= 2; M4.right -= 2; M4.done.take = true; M4.ways++;
+      afterWay('Убрали по две — стало поровну: три и три!');
+    });
+    b.appendChild(b2);
+  }
+  $('m4stat').textContent = 'Найдено способов: ' + M4.ways + ' из 2';
+}
+function afterWay(msg){
+  M4.left = M4.done.add ? 7 : 3;
+  M4.right = M4.done.add ? 7 : 3;
+  buildM4();
+  setProg('pM4', M4.ways, 2);
+  void 0;
+  if (M4.ways === 2){
+    $('m4stat').textContent = 'Оба способа найдены — здорово!';
+    praise(); setTimeout(function(){ $('btnM4').classList.remove('hidden'); }, 600);
+  } else {
+    $('m4stat').textContent = 'Найден 1 способ из 2. А можно по-другому?';
+  }
+}
+$('btnM4').addEventListener('click', function(){ show('sM5'); say('m5'); });
+
+/* ---------- M5: потерянные цифры ---------- */
+var M5 = { row:[1,2,null,4,5,null,7], tiles:[3,6,8], placed:0 };
+function buildM5(){
+  var r = $('m5row'); r.innerHTML = '';
+  var filled = {};
+  M5.row.forEach(function(v, i){
+    var d = document.createElement('div');
+    d.className = 'letter-cell';
+    d.style.fontSize = 'clamp(19px,4vw,36px)';
+    d.style.width = 'clamp(37px,7.2vw,68px)'; d.style.height = 'clamp(37px,7.2vw,68px)';
+    d.style.padding = '0'; d.style.justifyContent = 'center'; d.style.alignItems = 'center';
+    if (v !== null){ d.textContent = v; }
+    else { d.innerHTML = '<span style="color:#C9B98F">?</span>'; d.setAttribute('data-slot', String(i+1)); }
+    r.appendChild(d);
+  });
+  var t = $('m5tiles'); t.innerHTML = '';
+  shuffle(M5.tiles).forEach(function(v){
+    var d = document.createElement('div'); d.className = 'tile'; d.textContent = v;
+    d.style.fontSize = 'clamp(17px,3.6vw,33px)';
+    d.style.padding = '2px clamp(6px,1.4vw,12px)';
+    d.addEventListener('click', function(){
+      if (d.classList.contains('used')) return;
+      var need = v;
+      var slot = r.querySelector('[data-slot="' + need + '"]');
+      if (slot && slot.textContent === '?'){
+        slot.textContent = need; slot.style.color = '#2E7D32';
+        d.classList.add('used'); M5.placed++;
+        setProg('pM5', M5.placed, 2);
+        if (M5.placed === 2){ praise(); setTimeout(function(){ $('btnM5').classList.remove('hidden'); }, 600); }
+      } else {
+        d.classList.add('shake'); setTimeout(function(){ d.classList.remove('shake'); }, 400);
+        hintSay();
+      }
+    });
+    t.appendChild(d);
+  });
+}
+$('btnM5').addEventListener('click', function(){ show('sM6'); say('m6'); });
+
+/* ---------- M6: закономерность ---------- */
+var M6 = { items:[
+    {row:[2,4,6,8], opts:[9,10,12], ok:10},
+    {row:[1,3,5], opts:[6,7,9], ok:7}
+  ], idx:0 };
+function buildM6(){
+  var it = M6.items[M6.idx];
+  $('m6row').textContent = it.row.join('  ') + '  …';
+  $('m6stat').textContent = 'Ряд ' + (M6.idx+1) + ' из 2';
+  var box = $('m6opts'); box.innerHTML = '';
+  shuffle(it.opts).forEach(function(v){
+    var b = document.createElement('div'); b.className = 'btn opt'; b.textContent = v;
+    b.addEventListener('click', function(){
+      if (v === it.ok){
+        b.classList.add('ok'); M6.idx++; setProg('pM6', M6.idx, 2);
+        if (M6.idx < 2){ void 0; setTimeout(buildM6, 700); }
+        else { praise(); setTimeout(function(){ $('btnM6').classList.remove('hidden'); }, 600); }
+      } else { b.classList.add('no'); setTimeout(function(){ b.classList.remove('no'); }, 400); hintSay(); }
+    });
+    box.appendChild(b);
+  });
+}
+$('btnM6').addEventListener('click', function(){ show('sPosl'); say('posl'); });
+
+/* ---------- финал: пословица + звёздочки ---------- */
+$('btnPosl').addEventListener('click', function(){
+  show('sStars');
+  var st = document.getElementById('starRow').getElementsByTagName('span');
+  say('star1', function(){ st[0].classList.add('on'); say('star2', function(){ st[1].classList.add('on'); say('star3', function(){ st[2].classList.add('on'); }); }); });
+});
+$('btnStars').addEventListener('click', function(){ show('sResult'); buildResult(); });
+
+/* ---------- паспорт результата ---------- */
+var READ_LVL = {
+  1:{lvl:'1. Слышит звуки, но буквы пока путает', t:'Ребёнок различает звуки на слух — это хорошая база. Буквы и слоги ещё не сложились в чтение.'},
+  2:{lvl:'2. Знает буквы, но слоги пока не складывает', t:'Буквы узнаёт, но слияние в слог («ма», «ло») пока идёт с трудом — это самый частый этап.'},
+  3:{lvl:'3. Читает слоги и короткие слова', t:'Слоги читает уверенно, короткие слова — с небольшой помощью. Понимание прочитанного — следующий шаг.'},
+  4:{lvl:'4. Читает слова и предложения', t:'Читает слова и предложения, отвечает на вопросы по прочитанному. Осталось поработать над текстами.'},
+  5:{lvl:'5. Читает и понимает прочитанное', t:'Читает предложения и понимает смысл — отличная готовность к школе.'}
+};
+var MATH_LVL = {
+  1:{lvl:'1. Считает до 5, количество путает', t:'Числовой ряд знает приблизительно; связь «цифра = количество» ещё не прочная.'},
+  2:{lvl:'2. Считает в пределах 10', t:'Считает уверенно, решает задачи с опорой на картинки. Состав числа и сравнение — следующий шаг.'},
+  3:{lvl:'3. Считает и решает задачи, видит закономерности', t:'Счёт прочный, задачи решает, видит закономерности — сильная математическая готовность.'}
+};
+var ROUTE = {
+  read1:['Слушаем звуки: игры «Поймай звук», «Какой первый звук» по 5 минут в день',
+         'Учим буквы как звуки: не «эм», а [м] — поём, лепим, ищем вокруг',
+         'Не читаем тексты — сначала звук, потом буква'],
+  read2:['Складываем слоги: ма, мо, му, мы — из двух букв, без спешки',
+         'Играем «Собери слог» и «Дорожка чтения» по 5–7 минут',
+         'Читаем короткие слова из знакомых слогов: мама, мыло, луна'],
+  read3:['Читаем слова и сразу показываем картинку — так растёт понимание',
+         'Каждый день 3–5 предложений из 2–4 слов с вопросом: кто? что сделал?',
+         'Играем «Прочитай и найди», «Собери слово из слогов»'],
+  read4:['Читаем короткие тексты (2–4 предложения) и отвечаем на вопросы',
+         'Пересказываем по картинкам: о чём был текст',
+         'Читаем вывески на прогулке — буквы в жизни'],
+  read5:['Читаем короткие рассказы и обсуждаем: почему герой так поступил',
+         'Учим выразительность: где пауза, где вопрос',
+         'Пробуем читать вслух 5 минут в день — с удовольствием, не на скорость'],
+  math1:['Соотносим цифру и количество: раскладываем, считаем ступеньки, яблоки, игрушки',
+         'Сравниваем: больше — меньше — поровну, без цифр, на предметах',
+         'Считаем до 5 вперёд и назад, каждый день понемногу'],
+  math2:['Состав числа: 5 — это 2 и 3, 4 и 1 (раскладываем на две тарелки)',
+         'Соседи числа и сравнение: что больше — 7 или 5',
+         'Задачи только в картинках: прибежал → больше, убежал → меньше'],
+  math3:['Задачи в два действия — вслух, с проговариванием каждого шага',
+         'Закономерности: продолжи ряд, найди правило',
+         'Готовимся к школе: счёт до 20, простые примеры в пределах 10']
+};
+var DONT = {
+  read1:'Не давайте тексты и не заставляйте писать буквы: сначала звуки и слух.',
+  read2:'Не торопите с текстами: пока слог не читается целиком, слова будут «рассыпаться».',
+  read3:'Не сравнивайте с другими детьми и не гоняйте на скорость — важен смысл, а не темп.',
+  read4:'Не переходите к длинным текстам, пока короткие не читаются с пониманием.',
+  read5:'Не останавливайтесь: добавляйте тексты посложнее и обсуждение прочитанного.',
+  math1:'Не переходите к примерам на бумаге: сначала количество и сравнение на предметах.',
+  math2:'Не давайте примеры «столбиком» и на время — только наглядность и задачи с картинками.',
+  math3:'Не забегайте вперёд программы: закрепляйте состав числа и задачи, а не «примеры на скорость».'
+};
+
+function readLevel(){
+  var m = MARKS;
+  var ok = function(k){ return m[k] === 2 || m[k] === 1; };
+  if (!ok('r1')) return 1;
+  if (!ok('r2') || !ok('r3')) return 2;
+  if (!ok('r4') || !ok('r5') || !ok('r6')) return 3;
+  if (!ok('r7')) return 4;
+  return 5;
+}
+function mathLevel(){
+  var m = MARKS;
+  var ok = function(k){ return m[k] === 2 || m[k] === 1; };
+  if (!ok('m1') || !ok('m2')) return 1;
+  if (!ok('m4') || !ok('m5') || !ok('m6')) return 2;
+  return 3;
+}
+function buildResult(){
+  var rl = readLevel(), ml = mathLevel();
+  $('lvlRead').textContent = READ_LVL[rl].lvl;
+  $('txtRead').textContent = READ_LVL[rl].t;
+  $('lvlMath').textContent = MATH_LVL[ml].lvl;
+  $('txtMath').textContent = MATH_LVL[ml].t;
+  var r = $('route'); r.innerHTML = '';
+  ROUTE['read' + rl].forEach(function(step){ var li = document.createElement('li'); li.textContent = step; r.appendChild(li); });
+  ROUTE['math' + ml].forEach(function(step){ var li = document.createElement('li'); li.textContent = step; r.appendChild(li); });
+  $('dont').textContent = '❗ Чего сейчас не делать: ' + DONT['read' + rl] + ' ' + DONT['math' + ml];
+  /* дневник */
+  var d = $('diary'); d.innerHTML = '';
+  var names = {zag1:'Загадка про мел', otg1:'Отгадка: прочитал слово МЕЛ',
+               zag2:'Загадка про пенал', otg2:'Отгадка: прочитал слово ПЕНАЛ',
+               r1:'Буквы: гласные и согласные', r2:'Слово и картинка', r3:'Слово из слогов', r4:'Закончи предложение',
+               r5:'Звук «ш»', r6:'Один — много', r7:'Предложение из слов',
+               m1:'Количество (ловушка)', m2:'Счёт в хаосе', m3:'Задачи', m4:'Поровну', m5:'Потерянные цифры', m6:'Закономерность'};
+  var tbl = document.createElement('table');
+  tbl.style.cssText = 'width:100%;border-collapse:collapse;font-size:clamp(11px,1.9vw,15px)';
+  var keys = ['zag1','otg1','zag2','otg2','r1','r2','r3','r4','r5','r6','r7','m1','m2','m3','m4','m5','m6'];
+  for (var i=0;i<keys.length;i++){
+    var k = keys[i], v = MARKS[k];
+    var tr = document.createElement('tr');
+    tr.innerHTML = '<td style="padding:3px 6px;border-bottom:1px solid #EADFC4">' + (i+1) + '. ' + names[k] + '</td>' +
+      '<td style="padding:3px 6px;border-bottom:1px solid #EADFC4;white-space:nowrap">' +
+      (v === 2 ? '✅ сам' : v === 1 ? '⏳ с подсказкой' : v === 0 ? '❌ не смог' : '— не отмечено') + '</td>';
+    tbl.appendChild(tr);
+  }
+  d.appendChild(tbl);
+
+  var lines = ['Моя полная диагностика «Яша и волшебные ступеньки»:',
+    'Чтение: ' + READ_LVL[rl].lvl, 'Счёт: ' + MATH_LVL[ml].lvl, '', 'По заданиям:'];
+  for (var j=0;j<keys.length;j++){
+    var kk = keys[j], vv = MARKS[kk];
+    lines.push((j+1) + '. ' + names[kk] + ': ' + (vv === 2 ? 'сам' : vv === 1 ? 'с подсказкой' : vv === 0 ? 'не смог' : 'не отмечено'));
+  }
+  lines.push('', 'Маршрут:');
+  ROUTE['read' + rl].forEach(function(st){ lines.push('• ' + st); });
+  ROUTE['math' + ml].forEach(function(st){ lines.push('• ' + st); });
+  window.__resultText = lines.join('\n');
+}
+$('btnSend').addEventListener('click', function(){
+  var t = window.__resultText || 'Диагностика пройдена';
+  if (navigator.clipboard) navigator.clipboard.writeText(t).catch(function(){});
+  try { prompt('Скопируйте текст и отправьте Наташе (в ВК или Telegram):', t); } catch(e){}
+  $('sendHint').textContent = 'Текст скопирован. Спасибо! Наташа посмотрит и скажет, с чего начать.';
+});
+$('btnAgain').addEventListener('click', function(){ location.reload(); });
+
+buildM4(); buildM5(); buildM6();
+</script>
+
 </body>
 </html>
